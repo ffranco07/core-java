@@ -21,13 +21,13 @@ public class BinaryTree {
 		}
 		// If tree is not empty then height = 1 + max of left
 		// height and right heights */
-		System.out.println("node data is: " + node.data);
+		System.out.println("node id is: " + node.id);
 		if (node.left != null)
-			System.out.println("node left data is: " + node.left.data);
+			System.out.println("node left id is: " + node.left.id);
 		if (node.right != null)
-			System.out.println("node right data is: " + node.right.data);
+			System.out.println("node right id is: " + node.right.id);
 		int counter = 1 + max(height(node.left), height(node.right));
-		System.out.println("counter is: " + counter + " for node: " + node.data);
+		System.out.println("counter is: " + counter + " for node: " + node.id);
 		return counter;
 	}
 
@@ -63,11 +63,11 @@ public class BinaryTree {
 
 	// A binary tree node
 	public static class Node {
-		int data;
+		int id;
 		Node left, right;
 
 		Node(int d) {
-			data = d;
+			id = d;
 			left = right = null;
 		}
 	}
@@ -82,7 +82,7 @@ public class BinaryTree {
 		tree.root.right = new Node(3);
 		tree.root.left.left = new Node(4);
 		tree.root.left.right = new Node(5);
-		tree.root.left.left.left = new Node(6);
+		//tree.root.left.left.left = new Node(6);
 		if (tree.isBalanced(tree.root))
 			System.out.println("Tree is balanced");
 		else

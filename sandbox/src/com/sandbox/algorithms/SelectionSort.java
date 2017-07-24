@@ -57,9 +57,9 @@ public class SelectionSort {
 			}
 			// Now we have min index and can swap its value 
 			// with current index value at the front of array
-			temp = myArray[minIndex];
-			myArray[minIndex] = myArray[i];
-			myArray[i] = temp;
+			temp = myArray[i];
+			myArray[i] = myArray[minIndex];
+			myArray[minIndex] = temp;
 			printArray(false, myArray);
 		}
 		return myArray;
