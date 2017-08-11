@@ -32,9 +32,9 @@ public class ReverseArray {
 		int endIndex = myArray.length - 1;
 		while (startIndex <= endIndex) {
 			if (startIndex <= endIndex) {
-				temp = myArray[startIndex];
-				myArray[startIndex] = myArray[endIndex];
-				myArray[endIndex] = temp;
+				temp = myArray[endIndex];
+				myArray[endIndex] = myArray[startIndex];
+				myArray[startIndex] = temp;
 				startIndex++;
 				endIndex--;
 			}
@@ -54,10 +54,10 @@ public class ReverseArray {
 	public int[] reverseArray(int[] myArray, int startIndex, int endIndex) {
 		int temp;
 		if (startIndex <= endIndex) {
-			temp = myArray[startIndex];
-			// System.out.println("temp is: " + temp);
-			myArray[startIndex] = myArray[endIndex];
-			myArray[endIndex] = temp;
+			temp = myArray[endIndex];
+			System.out.println("temp is: " + temp);
+			myArray[endIndex] = myArray[startIndex];
+			myArray[startIndex] = temp;
 			reverseArray(myArray, startIndex + 1, endIndex - 1);
 		}
 		return myArray;
@@ -72,8 +72,8 @@ public class ReverseArray {
 		int[] myArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		ReverseArray ra = new ReverseArray();
 		ra.printArray("Original: ", myArray);
-		// int[] reversed = ra.reverseArray(myArray, 0, myArray.length -1);
-		int[] reversed = ra.reverseArray(myArray);
+		 int[] reversed = ra.reverseArray(myArray, 0, myArray.length -1);
+		//int[] reversed = ra.reverseArray(myArray);
 		ra.printArray("Reversed: ", reversed);
 	}
 }

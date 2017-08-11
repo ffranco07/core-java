@@ -49,8 +49,10 @@ public class InsertionSort {
 			// while loop ends with negative j value
 			while (j >=0 && myArray[j] > value) {
 				myArray[j+1] = myArray[j];
+				// Decrement j index
 				j = j-1;
 			}
+			// Set decremented j+1 element to value
 			myArray[j+1] = value;
 			printArray(false, myArray);
 		}

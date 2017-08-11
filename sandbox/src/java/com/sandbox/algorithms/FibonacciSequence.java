@@ -3,7 +3,9 @@ package com.sandbox.algorithms;
 /**
  * @author Francisco Franco
  *
- * Creates a series of numbers in which each number 
+ * Creates 
+ * 
+ a series of numbers in which each number 
  * (Fibonacci Number) is the sum of the two preceding numbers.
  */
 

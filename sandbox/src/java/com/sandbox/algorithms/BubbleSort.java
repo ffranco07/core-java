@@ -33,7 +33,7 @@ public class BubbleSort {
 		if (!isOriginal)
 			count++;
 	}
-
+	
 	/**
 	 * Time Complexity: O(n^2)
 	 * 
@@ -42,7 +42,7 @@ public class BubbleSort {
 	 */
 	public int[] sortArray(int[] myArray) {
 		int temp;
-		for (int pass = 0; pass < (myArray.length-1); pass++) {
+		for (int pass = 0; pass < (myArray.length); pass++) {
 			for (int j = 0; j < (myArray.length-pass-1); j++) {
 				if (myArray[j] > myArray[j+1]) {
 					// Swap elements so that they are ordered
@@ -64,10 +64,14 @@ public class BubbleSort {
 	 * @param myArray
 	 * @return
 	 */
+	/**
+	 * @param myArray
+	 * @return
+	 */
 	public int[] sortArrayImproved(int[] myArray) {
 		int temp;
 		boolean swapped = true;
-		for (int pass = 0; pass < (myArray.length -1) && swapped; pass++) {
+		for (int pass = 0; pass < (myArray.length) && swapped; pass++) {
 			swapped = false;
 			for (int j = 0; j < (myArray.length-pass-1); j++) {
 				if (myArray[j] > myArray[j+1]) {
