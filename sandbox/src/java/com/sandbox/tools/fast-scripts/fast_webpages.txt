@@ -3,8 +3,6 @@ http://192.168.0.3:8080/msgsubsys-ws/GTConnectService/GTConnectBean?wsdl
 
 // EGH production admin
 https://www.gtlegh.com:8443
-Username: gametec
-Password:  GTLgtl99
 
 // LSDL Smpp Simulator
 start C:/SMPPSim/startsmppsim.bat
