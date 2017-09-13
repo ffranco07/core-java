@@ -1,0 +1,279 @@
+(setq load-path (cons (expand-file-name "C:/emacs-21.3/lisp") load-path))
+
+;
+; load libraries
+;
+(load-library "hilit19")
+;(load-library "p4")
+
+
+
+;(p4-set-p4-executable "C:/Program Files/Perforce/p4.exe")
+;(p4-set-p4-executable "/cygdrive/c/Program Files/perforce/p4.exe")
+;
+; set up native modes
+;
+(setq make-backup-files nil) 
+(setq line-number-mode 1)
+(setq column-number-mode 1)
+(setq auto-fill-mode 1)
+(setq visible-bell t)
+(transient-mark-mode t)
+(display-time)
+
+;
+; set up the looks (font and colors)
+;
+
+;(set-default-font "9x15")
+(set-default-font "-dec-terminal-bold-r-normal-*-*-120-*-*-c-*-iso8859-1")
+
+(defun my-c-mode-common-hook ()
+  ;(setq c-indent-level 2)
+  ;(setq c-brace-offset 8)
+  (setq c-basic-offset 2)
+  (setq-default tab-width 2)
+  (setq tab-width 2))
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 
+ 'java-mode-hook
+ '(lambda () "Treat Java 1.5 @-style annotations as comments."
+    (setq c-comment-start-regexp "\\(@\\|/\\(/\\|[*][*]?\\)\\)")
+    (modify-syntax-entry ?@ "< b" java-mode-syntax-table)))
+
+
+;(set-background-color "honeydew")
+(set-background-color "black")
+;(set-background-color "seashell2")
+;(set-background-color "ivory2") ;ivory3") with font "9x15bold"
+;(set-background-color "lightyellow3")
+
+(set-foreground-color "gray")
+;(set-cursor-color "steelblue")
+(set-cursor-color "blue") ;"saddlebrown")
+(set-mouse-color "blue")
+;(set-foreground-color "gray")
+;(set-cursor-color "lawngreen")
+;(set-mouse-color "lawngreen")
+
+; (make-face 'keywords)
+; (set-face-foreground 'keywords "yellow")
+; (setq font-lock-keyword-face 'keywords)
+
+(make-face 'keyword-c)
+(set-face-foreground 'keyword-c "yellow") ;"steelblue")
+(setq font-lock-keyword-face 'keyword-c)
+
+; (make-face 'define-c)
+; (set-face-foreground 'define-c "DarkOlivegreen4")
+; (setq font-lock-keyword-face 'string-c)
+; (make-face 'include-c)
+; (set-face-foreground 'include-c "Springgreen4")
+; (setq font-lock-keyword-face 'string-c)
+
+(make-face 'string-c)
+(set-face-foreground 'string-c "cadetblue") ;"dim gray") ;rosybrown4")
+(setq font-lock-string-face 'string-c)
+
+(make-face 'comment-c)
+(set-face-foreground 'comment-c "orange")
+; "dark magenta") ;"rosybrown4") ;darkgreen")  ;"DarkGoldenrod4")
+(setq font-lock-comment-face 'comment-c)
+
+(make-face 'mismatch-c)
+(set-face-foreground 'mismatch-c "yellow")
+(setq show-paren-mismatch-face 'mismatch-c)
+
+;(setq default-frame-alist
+;      '((width . 80) (height . 25)
+;        (font . "-*-Lucida Console-normal-r-*-*-11-82-*-*-c-*-*-#204-")))
+
+(set-frame-height (selected-frame) 35)
+(set-frame-width (selected-frame) 60)
+
+(cond ((fboundp 'global-font-lock-mode)
+       ;; Turn on font-lock in all modes that support it
+       (global-font-lock-mode t)
+       ;; Maximum colors
+       (setq font-lock-maximum-decoration t)))
+
+;(setq Info-directory-list (list "/usr/sww/lib/emacs-19/info/"))
+
+
+;
+; set up key-maps
+;
+(defun eaigu () (interactive (insert "\\'e")))
+(defun egrave () (interactive (insert "\\`e")))
+(defun agrave () (interactive (insert "\\`a")))
+(defun ugrave () (interactive (insert "\\`u")))
+(defun ccedi () (interactive (insert "\\c{c}")))
+(defun circon (carac)
+  (interactive "cChar:")
+  (if (= carac 105)
+      (insert "\\^{\\i}")
+    (insert "\\^" carac)))
+(defun trema (carac)
+  (interactive "cChar:")
+  (if (= carac 105)
+      (insert "\\\"{\\i}")
+    (insert "\\\"" carac)))
+
+;;(define-key global-map "\C-cq" 'quote-line)
+;;(define-key global-map "\C-c\C-q" 'quote-region)
+(global-set-key [f1] 'eaigu)
+(global-set-key [f2] 'egrave)
+(global-set-key [f3] 'ccedi)
+(global-set-key [f4] 'agrave)
+(global-set-key [f5] 'ugrave)
+(global-set-key [f6] 'circon)
+(global-set-key [f7] 'trema)
+(global-set-key [f10] 'compile)
+(global-set-key "\M-c" 'compile)
+(global-set-key "\M-n" 'next-error)
+(global-set-key "\M-g" 'goto-line)
+(global-set-key "" 'other-window)
+(global-set-key "" 'delete-backward-char)
+
+(put 'eval-expression 'disabled nil)
+(global-set-key [?\C-h] 'delete-backward-char)
+;(global-unset-key [delete] )
+;(global-set-key [delete] 'delete-char)
+
+;
+; Load various modules and associated libraries
+;
+
+; Set up PSGML
+; Add PSGML to load-path so Emacs can find it.
+; Note the forward slashes in the path... this is platform-independent so I 
+; would suggest using them over back slashes. If you use back slashes, they 
+; MUST BE doubled, as Emacs treats backslash as an escape character. 
+(setq load-path (append (list nil "c:/emacs-21.3/lisp") load-path))
+(add-to-list 'load-path "c:/emacs-21.3/site-lisp/psgml-1.3.1/psgml.elc")
+(add-to-list 'auto-mode-alist '("\\.xml" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xhtml" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.wsdl" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xsd" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.xsl" . xml-mode))
+(add-to-list 'auto-mode-alist '("\\.jsp" . xml-mode))
+
+;; Load verilog mode only when needed
+(autoload 'verilog-mode "verilog-mode" "Verilog mode" t )
+;; Any files that end in .v should be in verilog mode
+(setq auto-mode-alist (cons  '("\\.v\\'" . verilog-mode) auto-mode-alist))
+;; Any files in verilog mode should have their keywords colorized
+(add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
+
+(autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
+(setq auto-mode-alist (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
+(add-hook 'matlab-mode-hook '(lambda () (font-lock-mode 1)))
+;(autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
+
+;(defun my-matlab-mode-hook ()
+;    (setq matlab-function-indent t)  ; if you want function bodies indented
+;    (setq fill-column 79)            ; where auto-fill should wrap
+;    (turn-on-auto-fill))
+;(setq matlab-mode-hook 'my-matlab-mode-hook)
+
+;; User Level customizations (You need not use them all):
+;   (setq matlab-indent-function t)    ; if you want function bodies indented
+;   (setq matlab-verify-on-save-flag nil) ; turn off auto-verify on save
+;(defun my-matlab-mode-hook ()
+;   (setq fill-column 76))           ; where auto-fill should wrap
+;   (add-hook 'matlab-mode-hook 'my-matlab-mode-hook)
+;   (defun my-matlab-shell-mode-hook ()
+;      '())
+;(add-hook 'matlab-shell-mode-hook 'my-matlab-shell-mode-hook)
+
+(autoload 'vrml-mode "vrml-mode" "VRML mode." t)
+(setq auto-mode-alist (append '(("\\.wrl\\'" . vrml-mode)) auto-mode-alist))
+(add-hook 'vrml-mode-hook '(lambda () (font-lock-mode 1)))
+
+;(autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;(setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+;(setq auto-mode-alist (cons '("\\.jsp$" . html-helper-mode) auto-mode-alist))
+;(setq html-helper-basic-offset 3)
+
+; Indent c code four spaces 
+(setq c-basic-offset 4)
+; Associate c-mode with the .js extension
+(setq auto-mode-alist (append '(("\\.js$" . c-mode)) auto-mode-alist))
+
+(autoload 'browse-url "browse-url" "emacs-browser" t)
+
+; Use PSGML for sgml and xml major modes.
+(autoload 'sgml-mode "psgml" "Major mode to edit SGML files." t)
+(autoload 'xml-mode "psgml" "Major mode to edit XML files." t)
+
+(setq auto-mode-alist
+      (append (list '("\\.cc$"    .c++-mode)
+		    '("\\.hh$"    .c++-mode)
+		    '("\\.hpp$"   .c++-mode)
+		    '("\\.c$"     .c++-mode)
+		    '("\\.h$"     .c++-mode)
+                    '("\\.clp$"   .lisp-mode)
+		    '("\\.startup$" .shell-script-mode)
+		    '("\\.agent$" .shell-script-mode)
+		    '("\\.properties$" .shell-script-mode)
+		    '("README*" .shell-script-mode))
+	      auto-mode-alist))
+
+;;; Set up and enable syntax coloring. 
+; Create faces to assign markup categories.
+(make-face 'sgml-doctype-face)
+(make-face 'sgml-pi-face)
+(make-face 'sgml-comment-face)
+(make-face 'sgml-sgml-face)
+(make-face 'sgml-start-tag-face)
+(make-face 'sgml-end-tag-face)
+(make-face 'sgml-entity-face)
+
+; Assign attributes to faces. Background of white assumed.
+
+(set-face-foreground 'sgml-doctype-face "green")
+(set-face-foreground 'sgml-sgml-face "gray60")
+(set-face-foreground 'sgml-pi-face "sandy brown")
+(set-face-foreground 'sgml-comment-face "orange")
+(set-face-foreground 'sgml-start-tag-face "lightblue")
+(set-face-foreground 'sgml-end-tag-face "lightblue")
+(set-face-foreground 'sgml-entity-face "yellow")
+
+; Assign faces to markup categories.
+(setq
+ sgml-insert-missing-element-comment nil
+ sqml-auto-insert-required-elements t
+ sgml-live-element-indicator t
+ sgml-omittag-transparent t
+ sgml-balanced-tag-edit t
+ sgml-indent-data t
+ sgml-indent-step 2 
+ sgml-markup-faces
+      '((doctype        . sgml-doctype-face)
+        (pi             . sgml-pi-face)
+        (sgml           . sgml-sgml-face)
+        (comment        . sgml-comment-face)
+        (start-tag      . sgml-start-tag-face)
+        (end-tag        . sgml-end-tag-face)
+        (entity         . sgml-entity-face)))
+
+; PSGML - enable face settings
+(setq sgml-set-face t)
+
+;
+; custom looks set through Emacs.Help
+;
+(custom-set-variables)
+(custom-set-faces
+ '(keyword-c ((t (:bold t))) t)
+ '(region ((t (:background "blue"))))
+ '(font-lock-variable-name-face ((t (:foreground "DarkGoldenRod"))))
+ '(secondary-selection ((t (:background "darkslateBlue")))))
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+javac -cp "lib/cxf-api-2.7.0.jar;lib/cxf-rt-bindings-soap-2.7.0.jar;lib/cxf-rt-bbindings-xml-2.7.0.jar;lib/cxf-rt-core-2.7.0.jar;lib/cxf-rt-databinding-jaxb-2.7.0.jar;lib/cxf-rt-frontend-jaxrs-2.7.0.jar;lib/cxf-rt-frontend-jaxws-2.7.0.jar;lib/cxf-rt-frontend-simple-2.7.0.jar;lib/cxf-rt-transports-http-2.7.0.jar;lib/cxf-rt-ws-addr-2.7.0.jar;lib/cxf-rt-ws-policy-2.7.0.jar;lib/cxf-rt-ws-security-2.7.0.jar;lib/neethi-3.0.2.jar;lib/wsdl4j-1.6.2.jar;lib/xmlschema-core-2.0.3.jar;." CiscoAccountUtil.java
+
+java -cp "lib/cxf-api-2.7.0.jar;lib/cxf-rt-bindings-soap-2.7.0.jar;lib/cxf-rt-bbindings-xml-2.7.0.jar;lib/cxf-rt-core-2.7.0.jar;lib/cxf-rt-databinding-jaxb-2.7.0.jar;lib/cxf-rt-frontend-jaxrs-2.7.0.jar;lib/cxf-rt-frontend-jaxws-2.7.0.jar;lib/cxf-rt-frontend-simple-2.7.0.jar;lib/cxf-rt-transports-http-2.7.0.jar;lib/cxf-rt-ws-addr-2.7.0.jar;lib/cxf-rt-ws-policy-2.7.0.jar;lib/cxf-rt-ws-security-2.7.0.jar;lib/neethi-3.0.2.jar;lib/wsdl4j-1.6.2.jar;lib/xmlschema-core-2.0.3.jar;." CiscoAccountUtil
+
+java -classpath "lib/*;." CiscoAccountUtil
+
+/cygdrive/c/Program\ Files/Java/jdk1.6.0_32/bin/java -classpath "lib/*;META-INF/*;." CiscoAccountUtil
+

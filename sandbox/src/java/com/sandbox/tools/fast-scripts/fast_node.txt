@@ -1,0 +1,2 @@
+// Install cordova and ionic command line tools
+npm install -g cordova ionic

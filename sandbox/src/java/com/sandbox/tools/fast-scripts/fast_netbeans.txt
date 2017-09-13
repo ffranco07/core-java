@@ -1,0 +1,3 @@
+rm -rf /cygdrive/c/Documents and Settings/Francisco/Application Data/NetBeans/7.3/var
+
+rm -rf /cygdrive/c/Documents and Settings/Francisco/Application Data/NetBeans/7.3/config/Projects/extra/msgsubsys-lsdl-6b1f9073

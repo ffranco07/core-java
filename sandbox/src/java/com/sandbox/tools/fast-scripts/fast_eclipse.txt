@@ -1,0 +1,3 @@
+gwt:debug -e -X
+
+assembly:assembly
