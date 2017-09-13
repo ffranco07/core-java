@@ -1,0 +1,1 @@
+$ java -cp "lcfs-ocr-revalidation-tool-0.0.1-SNAPSHOT-fat.jar;./jks/*.jks;." com.sdge.lcfs.ocrrevalidationtool.OcrTestImageFileOrFolder lcfs_reg_missing_vin.pdf

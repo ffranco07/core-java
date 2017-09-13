@@ -1,0 +1,16 @@
+// List tables created in the database
+show tables;
+
+// Show columns for a table
+describe {table_name};
+
+// Show DDL (Data Definition Language) to recreate a table
+show create table {table_name};
+
+// Show metadata about the table
+describe formatted {table_name};
+
+// Use beeline command shell to execute hive queries
+beeline -u jdbc:hive2://localhost:10000 -n ffranco
+
+

@@ -1,0 +1,41 @@
+// SoapUI WSDL URL
+http://192.168.0.3:8080/msgsubsys-ws/GTConnectService/GTConnectBean?wsdl
+
+// EGH production admin
+https://www.gtlegh.com:8443
+Username: gametec
+Password:  GTLgtl99
+
+// LSDL Smpp Simulator
+start C:/SMPPSim/startsmppsim.bat
+http://localhost:88
+source_addr: 85515270076
+destination_addr: 6639
+
+// PCL Smpp Simulator
+start C:/SMPPSim/startsmppsim.bat
+http://localhost:88
+source_addr: 85515270076
+destination_addr: 5555
+
+// IEST Sports Book
+http://192.168.10.13:8080/sportsbook-iest/home.xhtml
+
+// IEST Sports Book
+http://192.168.0.10:8080/sportsbook-iest/newTemplate.xhtml
+
+// IEST Sports Book
+http://192.168.10.13:8080/sportsbook-iest/
+
+// Sports Gaming Sites
+http://sports.bovada.lv
+http://www.topbet.eu
+http://www.gtbets.eu
+http://www.betonline.ag
+https://www.sbobet.com/euro
+
+// RESTFUL App
+http://192.168.0.20:8080/rest-ejb/employees?field=email&value=franco_siete@yahoo.com
+
+// LCFS Splunk URL
+https://splunk.sempra.com/en-US/account/login?return_to=%2Fen-US%2F

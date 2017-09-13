@@ -1,0 +1,11 @@
+-Xms	-Xmx	-XX:PermSize	-XX:MaxPermSize
+64m	256m	64m		64m		(default)    
+128m	128m			
+512m	512m			
+1024m	1024m	256m		256m
+1536m	1536m
+2048m	2048m
+2500m	2500m
+4096m	4096m
+4192m	4192m
+8192m	8192m	

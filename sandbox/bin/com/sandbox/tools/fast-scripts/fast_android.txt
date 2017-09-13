@@ -1,0 +1,39 @@
+// Parse android device log with filter text
+adb.exe logcat | grep "SOAP ERROR"
+
+// Use android debug bridge to install app
+adb.exe install -r android-lsdl-debug.apk
+
+// List of Android SDK targets downloaded via Android SDK Manager
+android.bat list target
+
+// Update project to target that cordova/phonegap will be compiled for
+android.bat update project -p . -t android-22
+
+// Build cordova 4.0.0 jar
+cd /cygdrive/c/Users/francisco/.cordova/lib/npm-cache/cordova-android/4.0.0/package/framework
+$ android update project -p .
+$ ant jar
+=> ~/.cordova/lib/npm-cache/cordova-android/4.0.0/package/framework/cordova-4.0.0.jar
+
+// Cordova command to add plugin (append @ to add a specific version)
+cordova plugin add phonegap-plugin-barcodescanner
+phonegap plugin add https://github.com/manateeworks/phonegap-mwbarcodescanner.git
+
+// Cordova command to remove plugin
+cordova plugin remove phonegap-plugin-barcodescanner
+
+// Compile android app via ant to generate "unsigned" android-lsdl-release-unsigned.apk
+/cygdrive/c/Program\ Files/NetBeans\ 8.0/extide/ant/bin/ant -v -f build.xml clean release
+
+// Generate a private key using keytool.  Use password "gtlandroid"
+keytool -genkey -v -keystore gtlandroid.keystore -alias gtlandroid -keyalg RSA -keysize 2048 -validity 365
+
+// Sign app with private key using jarsigner
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore ../keystore/gtlandroid.keystore android-lsdl-release-unsigned.apk gtlandroid
+
+// Verify that apk is signed
+jarsigner -verify -verbose -certs android-lsdl-release-unsigned.apk
+
+// Align the final APK package using zipalign
+/cygdrive/c/Program\ Files/Android/android-sdk/build-tools/22.0.1/zipalign.exe -v 4 android-lsdl-release-unsigned.apk android-lsdl-release.apk

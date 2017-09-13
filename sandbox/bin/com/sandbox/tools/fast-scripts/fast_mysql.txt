@@ -1,0 +1,54 @@
+======================================
+Log into mysql from DOS command line (enter gtlgtl as pwd)
+======================================
+mysql -u root -p
+
+======================================
+Initialize mysqld database, create data dir, direct msgs to console
+====================================== 
+mysqld --initialize --console
+
+======================================
+Change root password in mysql version 5.7.13 
+======================================
+// Start mysqld server by skipping grant tables
+mysqld --skip-grant-tables --console
+// Execute following from mysql client as root in mysql database
+$ mysql -u root mysql  
+mysql> UPDATE user set authentication_string=password('gtlgtl') where user='root';
+mysql> FLUSH PRIVILEGES;
+// Restart mysqld server with no skip grant tables flag
+mysqld --console
+// Set Password for root user (NOT SURE IF ABOVE STEPS CAN BE SKIPPED & THIS DONE INSTEAD)
+mysql>SET PASSWORD FOR 'root'@'localhost' = PASSWORD('gtlgtl');
+
+======================================
+Grant user privileges
+======================================
+mysql> GRANT ALL PRIVILEGES ON dbTest.* To 'francisco'@'localhost' IDENTIFIED BY 'password';
+
+======================================
+Execute SQL file from command line and ouput in table form
+======================================
+mysql -u root -p -t < employees.sql
+
+======================================
+Install MySQLService as Windows Service (starts automatically)
+======================================
+mysqld -install MySQLService --defaults-file=C:\mysql-5.7.13-winx64\ini\mysql.ini
+
+======================================
+Delete MySQLService
+======================================
+sc delete MySQLService
+
+======================================
+Add FULLTEXT index to columns
+======================================
+mysql> ALTER TABLE employees ADD FULLTEXT INDEX first_name_index (first_name);
+mysql> ALTER TABLE employees ADD FULLTEXT INDEX last_name_index (last_name);
+
+======================================
+Use LIKE command to determine string is a substring of another string
+======================================
+mysql> SELECT * FROM employees WHERE last_name LIKE '%Noot%';
