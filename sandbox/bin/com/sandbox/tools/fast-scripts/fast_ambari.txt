@@ -1,7 +1,0 @@
-// Ambari username, password
-admin, admin
-maria_dev, mariadev
-
-// Reset Ambari admin password
-ambari-admin-password-reset
-
