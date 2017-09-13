@@ -15,12 +15,12 @@ Change root password in mysql version 5.7.13
 mysqld --skip-grant-tables --console
 // Execute following from mysql client as root in mysql database
 $ mysql -u root mysql  
-mysql> UPDATE user set authentication_string=password('gtlgtl') where user='root';
+mysql> UPDATE user set authentication_string=password('somepassword') where user='root';
 mysql> FLUSH PRIVILEGES;
 // Restart mysqld server with no skip grant tables flag
 mysqld --console
 // Set Password for root user (NOT SURE IF ABOVE STEPS CAN BE SKIPPED & THIS DONE INSTEAD)
-mysql>SET PASSWORD FOR 'root'@'localhost' = PASSWORD('gtlgtl');
+mysql>SET PASSWORD FOR 'root'@'localhost' = PASSWORD('somepassword');
 
 ======================================
 Grant user privileges
