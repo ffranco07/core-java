@@ -1,5 +1,0 @@
-=======================================
-Remove Control M (^M) characters type:
-=======================================
-Hold Alt and Shift and m and x keys (M-x) and type "replace-string RET C-q C-m RET RET" (where RET means press return key and C-q mean hold CTRL and press q key)
- 
