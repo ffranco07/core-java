@@ -17,6 +17,7 @@ public class BubbleSort {
 	}
 	
 	/**
+	 * @param isOriginal
 	 * @param myArray
 	 */
 	private void printArray(boolean isOriginal, int[] myArray) {
@@ -35,14 +36,20 @@ public class BubbleSort {
 	}
 	
 	/**
-	 * Time Complexity: O(n^2)
-	 * 
+	 * Best Case Time Complexity: O(n)
+	 * Worst Time Complexity: O(n^2)
+	 * When Array is already sorted
+	 *
 	 * @param myArray
 	 * @return
 	 */
 	public int[] sortArray(int[] myArray) {
 		int temp;
+		// Pass through entire array
 		for (int pass = 0; pass < (myArray.length); pass++) {
+		    //Limit value of j so tail is sinking in
+		    //One less element (last one) is needed to be compared
+		    //after each pass iteration
 			for (int j = 0; j < (myArray.length-pass-1); j++) {
 				if (myArray[j] > myArray[j+1]) {
 					// Swap elements so that they are ordered
@@ -57,22 +64,22 @@ public class BubbleSort {
 	}
 	
 	/**
-	 * Time Complexity: O(n^2)
 	 * Best Case Time Complexity: O(n)
-	 * Basically just skips 2nd for loop if myArray is already ordered
+	 * Worst Time Complexity: O(n^2)
+	 * Basically just skips 2nd for loop 
+	 * if myArray is already ordered
 	 * 
-	 * @param myArray
-	 * @return
-	 */
-	/**
 	 * @param myArray
 	 * @return
 	 */
 	public int[] sortArrayImproved(int[] myArray) {
 		int temp;
-		boolean swapped = true;
+		boolean swapped = false;
 		for (int pass = 0; pass < (myArray.length) && swapped; pass++) {
 			swapped = false;
+			//Limit value of j so tail is sinking in
+			//One less element (last one) is needed to be compared
+			//after each pass iteration
 			for (int j = 0; j < (myArray.length-pass-1); j++) {
 				if (myArray[j] > myArray[j+1]) {
 					// Swap elements so that they are ordered
@@ -82,6 +89,11 @@ public class BubbleSort {
 					swapped = true;
 				}
 				printArray(false, myArray);
+			}
+			// If no two elements swapped
+			// by inner loop then done sorting
+			if (swapped == false) {
+			    break;
 			}
 		}
 		return myArray;

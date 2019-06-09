@@ -1,18 +1,24 @@
 package com.sandbox.algorithms;
 
 /**
+ * A binary tree is a tree whose elements
+ * hve at most 2 children.
+ *
+ * This module determines if binary tree 
+ * is height balanced or not
+ *
  * @author Francisco Franco
  *
- * Java program to determine if binary tree is height balanced or not
  */
 
 public class BinaryTree {
 	public Node root;
 
 	/*
-	 * The function Compute the "height" of a tree. Height is the number of
-	 * nodes along the longest path from the root node down to the farthest leaf
-	 * node.
+	 * The function Compute the "height" of a tree. 
+	 * Height is the number of nodes along the 
+	 * longest path from the root node down to the 
+	 * farthest leafnode.
 	 */
 	private int height(Node node) {
 		// Base case tree is empty

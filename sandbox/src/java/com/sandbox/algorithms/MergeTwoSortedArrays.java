@@ -1,9 +1,10 @@
 package com.sandbox.algorithms;
 
 /**
- * @author Francisco Franco
+ * Given two sorted arrays, merge them 
+ * into a single sorted array
  *
- * Given two sorted arrays, merge them into a single sorted array
+ * @author Francisco Franco
  */
 
 public class MergeTwoSortedArrays {
@@ -20,7 +21,8 @@ public class MergeTwoSortedArrays {
 	}
 
 	/**
-	 * Time Complexity: O(n1 + n2) where n1 = a.length and n2 = b.length
+	 * Worst Time Complexity: O(n1 + n2) 
+	 * where n1 = a.length and n2 = b.length
 	 * 
 	 * @param a
 	 * @param b
@@ -57,7 +59,8 @@ public class MergeTwoSortedArrays {
 	}
 
 	/**
-	 * Time Complexity: O(n1 + n2) where n1 = a.length and n2 = b.length
+	 * Worst Time Complexity: O(n1 + n2) 
+	 * where n1 = a.length and n2 = b.length
 	 * 
 	 * @param a
 	 * @param b
@@ -90,7 +93,57 @@ public class MergeTwoSortedArrays {
 		}
 		return sorted;
 	}
-
+	
+	/**
+	 * Worst Time Complexity: O(n1 + n2) 
+	 * where n1 = a.length and n2 = b.length
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static int[] merge3(int[] a, int[] b) {
+		// Index for array a
+		int i = 0;
+		// Index for arry b
+		int j = 0;
+		// Index for array m
+		int k = 0;
+		// Merged array
+		int[] m = new int[a.length + b.length];
+		while (i < a.length && j < b.length) {
+	    if (a[i] < b[j]) {
+				m[k] = a[i];
+				i++;
+				k++;
+	    }
+	    else { 
+				m[k] = b[j];
+				j++;
+				k++;
+	    }
+		}
+		
+		// If array a was larger than array b
+		// copy remaing sorted elements from a 
+		// into array m
+		while (i < a.length) {
+	    m[k] = a[i];
+	    i++;
+	    k++;
+		}
+		
+		// If array b was larger than array a
+		// copy remaining sorted elements from b
+		// into array m
+		while (j < b.length) {
+	    m[k] = b[j];
+	    j++;
+	    k++;
+		}
+		return m;
+	}
+	
 	/**
 	 * @param args
 	 */

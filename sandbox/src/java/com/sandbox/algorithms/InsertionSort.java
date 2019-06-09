@@ -33,8 +33,10 @@ public class InsertionSort {
 	}
 
 	/**
-	 * Time Complexity: O(n^2)
+	 * Worst Time Complexity: O(n^2)
 	 * 
+	 * ALWAYS START ITERATION AT 1
+	 * TO LOOK AT PREVIOUS ELEMENT
 	 * @param myArray
 	 * @return
 	 */
@@ -44,8 +46,8 @@ public class InsertionSort {
 			value = myArray[i];
 			j = i - 1;
 			// Move ALL elements of arr[0..i-1], that are
-            // greater than key, to one position ahead
-            // of their current position.
+			// greater than value, to one position ahead
+			// of their current position.
 			// while loop ends with negative j value
 			while (j >=0 && myArray[j] > value) {
 				myArray[j+1] = myArray[j];

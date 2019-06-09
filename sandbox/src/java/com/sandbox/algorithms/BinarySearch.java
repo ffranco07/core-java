@@ -24,7 +24,8 @@ public class BinarySearch {
 	}
 	
 	/**
-	 * Time Complexity: O(log n)
+	 * Best Time Complexity: O(1)
+	 * Worst Time Complexity: O(log n)
 	 * Space Complexity: O(1)
 	 * 
 	 * @param list

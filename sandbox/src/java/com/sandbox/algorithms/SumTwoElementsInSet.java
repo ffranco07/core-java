@@ -3,13 +3,14 @@ package com.sandbox.algorithms;
 /**
  * @author Francisco Franco
  *
- * Find sum of two elements in set that add up to a given sum value
+ * Find sum of two elements in set/array
+ * that add up to a given sum value
  */
 
 public class SumTwoElementsInSet {
 
 	/**
-	 * Time Complexity: O(n^2)
+	 * Worst Time Complexity: O(n^2)
 	 * 
 	 * @param sum
 	 * @param myArray
