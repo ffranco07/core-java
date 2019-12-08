@@ -25,7 +25,8 @@ public class FirstNonRepeatingCharacter {
 			// DEBUG
 			//System.out.println("ASCII value:" + (int)str.charAt(i));
 			// Use ASCII value as index in count array
-			// to increment element value 
+			// to increment element value
+			// Cast char to int to get ASCII numeric code value
 			count[(int)str.charAt(i)]++;
 		}
 		//DEBUG
