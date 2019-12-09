@@ -6,9 +6,19 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.*;
 
+/**
+ * @author Francisco Franco
+ *
+ * QuickSort is a sorting algorithm, which 
+ * leverages the divide-and-conquer principle. 
+ * It has an average O(n log n) complexity and 
+ * is one of the most used sorting algorithms, 
+ * especially for big data volumes.
+ */
+
 public class QuickSort {
 	
-	// Swap array values at respective indices
+	// Swap array values at respective indices in array
 	private static void swap(int[] arr, int i, int j) {
 		int temp = arr[i];
 		arr[i] = arr[j];
@@ -63,6 +73,7 @@ public class QuickSort {
 		System.out.println(builder.toString());
 	}
 	
+	// Main method
 	public static void main(String[] args) throws IOException {
 		int[] arr = {4, 5, 3, 7, 2};
 		printArray(true, arr);
