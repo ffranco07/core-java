@@ -16,7 +16,7 @@ public class FirstNonRepeatingCharacter {
 	/* Calculate count of characters 
 	 * in the string input parameter
 	 */
-	public static void getCharCountArray(String str) {
+	public static void setCharCountArray(String str) {
 		for (int i = 0; i < str.length();  i++) {
 			// Index "str.charAt(i)" evaluates to 
 			// an int ASCII table value
@@ -25,7 +25,8 @@ public class FirstNonRepeatingCharacter {
 			// DEBUG
 			//System.out.println("ASCII value:" + (int)str.charAt(i));
 			// Use ASCII value as index in count array
-			// to increment element value 
+			// to increment element value
+			// Cast char to int to get ASCII numeric code value
 			count[(int)str.charAt(i)]++;
 		}
 		//DEBUG
@@ -38,7 +39,8 @@ public class FirstNonRepeatingCharacter {
 	 * repeating then returns -1 
 	 */
 	public static int firstNonRepeating(String str) {
-		getCharCountArray(str);
+		// Calculate char count for input string
+		setCharCountArray(str);
 		int index;
 		for (int i = 0; i < str.length();  i++) {
 			index = str.charAt(i);
