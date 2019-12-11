@@ -145,6 +145,35 @@ public class MergeTwoSortedArrays {
 	}
 	
 	/**
+	 * Worst Time Complexity: O(n1) 
+	 * where n1 = merged.length
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public int[] merge4(int[] a, int[] b) {
+		int[] merged = new int[a.length + b.length];
+		int aIndex = 0;
+		int bIndex = 0;
+		for (int i = 0; i < merged.length; i++) {
+			if  (aIndex < a.length && bIndex < b.length && a[aIndex] > b[bIndex]) {
+				merged[i] = b[bIndex];
+				bIndex++;
+			}
+			else if (aIndex < a.length) {
+				merged[i] = a[aIndex];
+				aIndex++;
+			}
+			else if (bIndex < b.length) {
+				merged[i] = b[bIndex];
+				bIndex++;
+			}
+		}
+		return merged;
+	}
+	
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -155,7 +184,7 @@ public class MergeTwoSortedArrays {
 		MergeTwoSortedArrays mtsa = new MergeTwoSortedArrays();
 		mtsa.printArray("Array a: ", a);
 		mtsa.printArray("Array b: ", b);
-		int[] merged = mtsa.merge2(a, b);
+		int[] merged = mtsa.merge4(a, b);
 		mtsa.printArray("Merged: ", merged);
 	}
 }

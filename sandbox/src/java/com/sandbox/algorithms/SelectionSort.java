@@ -39,7 +39,7 @@ public class SelectionSort {
 	}
 	
 	/**
-	 * Time Complexity: O(n^2)
+	 * Worst Time Complexity: O(n^2)
 	 * 
 	 * @param myArray
 	 * @return

@@ -10,7 +10,7 @@ package com.sandbox.algorithms;
 public class SumTwoElementsInSet {
 
 	/**
-	 * Worst Time Complexity: O(n^2)
+	 * Time Complexity: O(n^2)
 	 * 
 	 * @param sum
 	 * @param myArray
