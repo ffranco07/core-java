@@ -1,3 +1,10 @@
+/**
+ * @author Francisco Franco
+ *
+ * Implementing a Linked List in java
+ *
+ */
+
 public class LinkedList {
 	private int size = 0; // number of elements
 	private Node head = null; // head of the list
