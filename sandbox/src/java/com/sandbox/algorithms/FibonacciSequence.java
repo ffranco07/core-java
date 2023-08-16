@@ -5,6 +5,8 @@
  *
  * Creates a series of numbers in which each number 
  * (Fibonacci Number) is the sum of the two preceding numbers.
+ *
+ * f(n) = f(n-1) + f(n-2) for n > 1 and f(0) = 0 and f(1) = 1
  */
 
 public class FibonacciSequence {
