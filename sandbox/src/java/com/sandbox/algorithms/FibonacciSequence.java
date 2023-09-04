@@ -14,12 +14,12 @@ public class FibonacciSequence {
     /**
      * @param myArray
      */
-	private void printArray(int[] myArray) {
-		System.out.print("Fib Seq: ");
+	private String arrayToString(int[] myArray) {
+		StringBuilder builder = new StringBuilder();
 		for (int l = 0; l < myArray.length; l++) {
-	    System.out.print(myArray[l] + " ");
+	    builder.append(myArray[l] + " ");
 		}
-		System.out.println("");
+		return builder.toString();
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class FibonacciSequence {
 	 * @param size
 	 * @return
 	 */
-	public int[] fibSeq(int size) {
+	public int[] fibSeqIterative(int size) {
 		int[] seq = new int[size];
 		int x = 1;
 		int y = 1;
@@ -50,8 +50,7 @@ public class FibonacciSequence {
 		}
 		return seq;
 	}
-	
-	
+ 
 	/**
 	 * Time Complexity: O(2^n) Upper Bound
 	 * Recursive method 
@@ -62,8 +61,11 @@ public class FibonacciSequence {
 	 * @return
 	 */
 	public static int fibSeqRecursion(int size){
-		if (size <= 1) {
-	    return 1;
+		if (size == 0) {
+			return 0;
+		}
+		else if (size == 1) {
+			return 1;
 		} 
 		else {
 	    int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
@@ -77,7 +79,10 @@ public class FibonacciSequence {
 	public static void main(String[] args) {
 		// Ex. 1, 1, 2, 3, 5, 8, 13
 		FibonacciSequence fs = new FibonacciSequence();
-		int[] seq = fs.fibSeq(10);
-		fs.printArray(seq);
+		int size = 5;
+		System.out.println("fibSeq input size: " + size);
+		System.out.println("fibSeqRecursion output: " + fs.fibSeqRecursion(size));
+		int[] seq = fs.fibSeqIterative(5);
+		System.out.println("fibSeqIterative output: " + fs.arrayToString(seq));
 	}    
 }
