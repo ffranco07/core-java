@@ -37,7 +37,7 @@ public class BinarySearch {
 		int hiIndex = list.length - 1;
 		int midIndex;
 		while(lowIndex <= hiIndex) {
-			midIndex = lowIndex + ((hiIndex - lowIndex) / 2);
+			midIndex = (lowIndex + hiIndex) / 2;
 			//System.out.println("midIndex is: " + midIndex);
 			if (value > list[midIndex]) {
 				lowIndex = midIndex + 1;
@@ -56,14 +56,16 @@ public class BinarySearch {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int[] whiteList = {30, 50, 20, 33, 1, 51, 66, 99, 12, 84};
-		int myValue = 66;
-		Arrays.sort(whiteList);
+		int[] ints = {30, 50, 20, 33, 1, 51, 66, 99, 12, 84};
+		int myValue = 99;
+		Arrays.sort(ints);
 		BinarySearch bs = new BinarySearch();
-		bs.printArray(whiteList);
-		System.out.println("Search Value is: " + myValue);
-		int index = bs.findIndex(whiteList, myValue);
-		System.out.println("Found Index is: " + index);
+		bs.printArray(ints);
+		System.out.println("Search Value: " + myValue);
+		int index = bs.findIndex(ints, myValue);
+		System.out.println("Found Index: " + index);
+		// Use internal library for binary search
+		System.out.println("Library Arrays.binarySearch Found Index: " + Arrays.binarySearch(ints, myValue));
 	}
 
 }
