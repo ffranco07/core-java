@@ -31,10 +31,13 @@ public class QuickSort {
 	private static int partition(int arr[], int begin, int end) {
 		int pivot = arr[end];
 		int i = (begin-1);
+
+		System.out.println("begin:" + begin + " end:" + end);
 		
 		for (int j = begin; j < end; j++) {
 			if (arr[j] <= pivot) {
 				i++;
+				System.out.println("About to swap for i:" + i + " j:" + j);
 				swap(arr, i, j);
 			}
 		}
@@ -48,6 +51,7 @@ public class QuickSort {
 		if (begin < end) {
 			// Find partion index
 			int partitionIndex = partition(arr, begin, end);
+			System.out.println("partitionIndex:" + partitionIndex);
 			// Divide 
 			sort(arr, begin, partitionIndex-1);
 			sort(arr, partitionIndex+1, end);
