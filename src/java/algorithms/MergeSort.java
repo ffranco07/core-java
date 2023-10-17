@@ -1,6 +1,9 @@
 import java.util.Random;
 
 /*
+ * MergeSort is a sorting algorithm, which 
+ * leverages the divide-and-conquer principle.
+ *
  * Time Complexity: O(N log(N)), Merge Sort is a 
  * recursive algorithm and time complexity can be 
  * expressed as following recurrence relation.
