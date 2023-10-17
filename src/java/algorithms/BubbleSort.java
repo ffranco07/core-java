@@ -1,5 +1,7 @@
 //package com.sandbox.algorithms;
 
+import java.util.Random;
+
 /**
  * @author Francisco Franco
  *
@@ -36,6 +38,12 @@ public class BubbleSort {
 		System.out.println(builder.toString());
 	}
 
+	private void swap(int[] myArray, int iIndex, int jIndex) {
+		int temp = myArray[iIndex];
+		myArray[iIndex] = myArray[jIndex];
+		myArray[jIndex] = temp;
+	}
+
 	/**
 	 * Time Complexity: O(n^2)
 	 * Auxiliary Space: O(1)
@@ -43,37 +51,40 @@ public class BubbleSort {
 	 * @param myArray
 	 * @return
 	 */
-	public int[] sortArray(int[] myArray) {
+	public int[] sortArray(int[] numbers) {
 		boolean swapped = true;
 		int temp;
 		// Pass through entire array
 		while (swapped) {
 			swapped = false;
-			for (int i = 0; i < myArray.length - 1; i++) {
-				if (myArray[i] > myArray[i+1]) {
+			for (int i = 0; i < numbers.length - 1; i++) {
+				if (numbers[i] > numbers[i+1]) {
 					swapped = true;
-					temp = myArray[i];
-					myArray[i] = myArray[i+1];
-					myArray[i+1] = temp;
-					printArray("Swap Step", myArray);	
+					swap(numbers, i, i+1);
+					printArray("Swap Step", numbers);	
 				}
 			}
 			if (!swapped) {
-				printArray("Sorted", myArray);
+				printArray("Sorted", numbers);
 			}
 		}
-		return myArray;
+		return numbers;
 	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int[] myArray = {20, 15, 12, 30, -5, 3, 456};
-		//int[] myArray = {-5, 12, 15, 20, 30, 72, 456};
+		//int[] numbers = {20, 15, 12, 30, -5, 3, 456};
+		//int[] numbers = {-5, 12, 15, 20, 30, 72, 456};
+		Random random = new Random();
+		int[] numbers = new int[10];
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = random.nextInt(100);
+		}
 		BubbleSort bs = new BubbleSort();
-		bs.printArray("Orig", myArray);
-		bs.sortArray(myArray);
+		bs.printArray("Orig", numbers);
+		bs.sortArray(numbers);
 	}
 
 }

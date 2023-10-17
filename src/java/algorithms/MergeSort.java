@@ -1,6 +1,8 @@
 import java.util.Random;
 
 /*
+ * @author Francisco Franco
+ *
  * MergeSort is a sorting algorithm, which 
  * leverages the divide-and-conquer principle.
  *
@@ -15,28 +17,67 @@ import java.util.Random;
  */
 
 public class MergeSort {
-	public static void main(String[] args) {
-
-		Random rand = new Random();
-    //int[] numbers = new int[10];
-		int[] numbers = new int[6];
-
-		for (int i = 0; i < numbers.length; i++) {
-      //numbers[i] = rand.nextInt(1000000);
-			numbers[i] = rand.nextInt(100);
-    }
-
-		// DEBUG
-		printArray("NON-SORTED", numbers);
-
-    mergeSort(numbers); 
-
-    // DEBUG
-		printArray("SORTED", numbers);
-  }
-
 	
-  private static void mergeSort(int[] inputArray) {
+	private static void printArray(String tag, int[] numbers) {
+		StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < numbers.length; i++) {
+			builder.append(numbers[i]);
+			if (!(i == numbers.length - 1)) {
+				builder.append(" ");
+			}
+		}
+		System.out.println(tag + ": " + builder.toString());
+  }
+	
+	private static void merge (int[] inputArray, int[] leftHalf, int[] rightHalf) {
+		// DEBUG
+		System.out.println("MERGING LEFT HALF & RIGHT HALF INPUT ARRAY LENGTH:" + inputArray.length);
+		
+		// DEBUG
+		printArray("LEFT HALF TO MERGE", leftHalf);
+		
+		// DEBUG
+		printArray("RIGHT HALF TO MERGE", rightHalf);
+		
+		// DEBUG
+		//try {
+		//Thread.sleep(2000);
+		//}
+		//catch (Exception e) {
+		//e.printStackTrace();
+		//}
+		
+		int leftSize = leftHalf.length;
+		int rightSize = rightHalf.length;
+		
+		int i = 0, j = 0, k = 0;
+		
+		while (i < leftSize && j < rightSize) {
+			if (leftHalf[i] <= rightHalf[j]) {
+				inputArray[k] = leftHalf[i];
+				i++;
+			}
+			else {
+				inputArray[k] = rightHalf[j];
+				j++;
+			}
+			k++;
+		}
+		
+		while (i < leftSize) {
+			inputArray[k] = leftHalf[i];
+			i++;
+			k++;
+		}
+		
+		while (j < rightSize) {
+			inputArray[k] = rightHalf[j];
+			j++;
+			k++;
+		}
+	}
+	
+	private static void mergeSort(int[] inputArray) {
     int inputLength = inputArray.length;
     
     if (inputLength < 2) {
@@ -68,68 +109,29 @@ public class MergeSort {
 		// DEBUG
 		System.out.println("RIGHT HALF MERGE SORT DONE");
     
+		// Merge left half with right half
     merge(inputArray, leftHalf, rightHalf);
 		
 		System.out.println("##########################");
   }
 
-  private static void merge (int[] inputArray, int[] leftHalf, int[] rightHalf) {
+	public static void main(String[] args) {
+		Random rand = new Random();
+    //int[] numbers = new int[10];
+		int[] numbers = new int[6];
 		
-		
-		// DEBUG
-		System.out.println("MERGING LEFT HALF & RIGHT HALF INPUT ARRAY LENGTH:" + inputArray.length);
-
-		// DEBUG
-		printArray("LEFT HALF TO MERGE", leftHalf);
+		for (int i = 0; i < numbers.length; i++) {
+      //numbers[i] = rand.nextInt(1000000);
+			numbers[i] = rand.nextInt(100);
+    }
 
 		// DEBUG
-		printArray("RIGHT HALF TO MERGE", rightHalf);
+		printArray("Orig", numbers);
 
-		try {
-			Thread.sleep(2000);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-    int leftSize = leftHalf.length;
-    int rightSize = rightHalf.length;
-    
-    int i = 0, j = 0, k = 0;
-    
-    while (i < leftSize && j < rightSize) {
-      if (leftHalf[i] <= rightHalf[j]) {
-        inputArray[k] = leftHalf[i];
-        i++;
-      }
-      else {
-        inputArray[k] = rightHalf[j];
-        j++;
-      }
-      k++;
-    }
-    
-    while (i < leftSize) {
-      inputArray[k] = leftHalf[i];
-      i++;
-      k++;
-    }
-    
-    while (j < rightSize) {
-      inputArray[k] = rightHalf[j];
-      j++;
-      k++;
-    }
-	}
+		// Merge sort numbers
+    mergeSort(numbers); 
 
-  private static void printArray(String tag, int[] numbers) {
-		StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < numbers.length; i++) {
-			builder.append(numbers[i]);
-			if (!(i == numbers.length - 1)) {
-				builder.append(" ");
-			}
-		}
-		System.out.println(tag + ": " + builder.toString());
+    // DEBUG
+		printArray("Sorted", numbers);
   }
 }

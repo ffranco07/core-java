@@ -3,6 +3,7 @@
 import java.util.Random;
 
 /**
+ * @author Francisco Franco
  *
  * QuickSort is a sorting algorithm, which 
  * leverages the divide-and-conquer principle.
@@ -13,27 +14,26 @@ import java.util.Random;
  */
 
 public class QuickSort {
-
-	// Quick sort the array
-  private static void quicksort(int[] array) {
-    quicksort(array, 0, array.length - 1);
+	
+	// Print input array
+	private static void printArray(String tag, int[] numbers) {
+		StringBuilder builder = new StringBuilder();
+    for (int i = 0; i < numbers.length; i++) {
+			builder.append(numbers[i]);
+			if (!(i == numbers.length - 1)) {
+				builder.append(" ");
+			}
+		}
+		System.out.println(tag + ": " + builder.toString());
   }
 	
-	private static void quicksort(int[] array, int lowIndex, int highIndex) {
-		if (lowIndex >= highIndex) {
-      return;
-    }
-		
-    int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
-    int pivot = array[pivotIndex];
-    swap(array, pivotIndex, highIndex);
-
-    int leftPointer = partition(array, lowIndex, highIndex, pivot);
-
-    quicksort(array, lowIndex, leftPointer - 1);
-    quicksort(array, leftPointer + 1, highIndex);
+	// Swam elements at indices
+	private static void swap(int[] array, int index1, int index2) {
+    int temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
   }
-
+	
 	// Calculate partition
   private static int partition(int[] array, int lowIndex, int highIndex, int pivot) {
 		//  Use additional pointers to traverse array/subarray (during recursion)
@@ -70,18 +70,28 @@ public class QuickSort {
     return leftPointer;
   }
 
-  private static void swap(int[] array, int index1, int index2) {
-    int temp = array[index1];
-    array[index1] = array[index2];
-    array[index2] = temp;
-  }
-
-  private static void printArray(int[] numbers) {
-    for (int i = 0; i < numbers.length; i++) {
-      System.out.println(numbers[i]);
+	private static void quicksort(int[] array, int lowIndex, int highIndex) {
+		// Base case
+		if (lowIndex >= highIndex) {
+      return;
     }
+		
+    int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
+    int pivot = array[pivotIndex];
+    swap(array, pivotIndex, highIndex);
+
+    int leftPointer = partition(array, lowIndex, highIndex, pivot);
+		
+		// Recursive calls
+    quicksort(array, lowIndex, leftPointer - 1);
+    quicksort(array, leftPointer + 1, highIndex);
   }
 
+	// Quick sort the array
+  private static void quicksort(int[] array) {
+    quicksort(array, 0, array.length - 1);
+  }
+	
 	public static void main(String[] args) {
     Random rand = new Random();
     int[] numbers = new int[10];
@@ -90,12 +100,10 @@ public class QuickSort {
       numbers[i] = rand.nextInt(100);
     }
 		
-    System.out.println("Before:");
-    printArray(numbers);
-
+		printArray("Orig", numbers);
+		
     quicksort(numbers);
-
-    System.out.println("\nAfter:");
-    printArray(numbers);
+		
+		printArray("Sorted", numbers);
   }
 }

@@ -1,5 +1,7 @@
 //package com.sandbox.algorithms;
 
+import java.util.Random;
+
 /**
  * @author Francisco Franco
  *
@@ -39,48 +41,59 @@ public class SelectionSort {
 		}
 		System.out.println(builder.toString());
 	}
+
+	private void swap(int[] myArray, int iIndex, int jIndex) {
+		int temp = myArray[iIndex];
+		myArray[iIndex] = myArray[jIndex];
+		myArray[jIndex] = temp;
+	}
 	
 	/**
 	 * Time Complexity: O(n^2)
 	 * Auxiliary Space: O(1)
 	 *
-	 * @param myArray
+	 * @param numbers
 	 * @return
 	 */
-	public int[] sortArray(int[] myArray) {
-		int temp, minIndex;
-		for (int i = 0; i < (myArray.length - 1); i++) {
+	public int[] sortArray(int[] numbers) {
+		int numbersLength = numbers.length;
+		int min, minIndex;
+		for (int i = 0; i < (numbersLength - 1); i++) {
+			min = numbers[i];
 			minIndex = i;
-			for (int j = i+1; j < myArray.length; j++) {
-				// Move min index if next position at j 
-				// element value is less
-				if (myArray[j] < myArray[minIndex]) {
+			for (int j = i + 1; j < numbersLength; j++) {
+				// Move min index to the right if 
+				// next position at j is less than min
+				if (numbers[j] < min) {
+					min = numbers[j];
 					minIndex = j;
 				}
 			}
 			// Now we have min index and can swap its value 
 			// with current index value at the front of array
-			temp = myArray[minIndex];
-			myArray[minIndex] = myArray[i];
-			myArray[i] = temp;
-			if (i == myArray.length - 2) {
-				printArray("Sorted", myArray);
+			swap(numbers, i, minIndex);
+			if (i == numbers.length - 2) {
+				printArray("Sorted", numbers);
 			}
 			else {
-				printArray("Step", myArray);
+				printArray("Step", numbers);
 			}
 		}
-		return myArray;
+		return numbers;
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int[] myArray = {64, 25, 12, 22, 11};
+		//int[] numbers = {64, 25, 12, 22, 11};
+		Random random = new Random();
+		int[] numbers = new int[10];
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = random.nextInt(100);
+		}
 		SelectionSort ss = new SelectionSort();
-		ss.printArray("Orig", myArray);
-		ss.sortArray(myArray);
+		ss.printArray("Orig", numbers);
+		ss.sortArray(numbers);
 	}
-
 }

@@ -1,5 +1,7 @@
 //package com.sandbox.algorithms;
 
+import java.util.Random;
+
 /**
  * @author Francisco Franco
  *
@@ -16,7 +18,6 @@ public class InsertionSort {
 	}
 	
 	/**
-	 * @param tag
 	 * @param myArray
 	 */
 	private void printArray(String tag, int[] myArray) {
@@ -42,13 +43,13 @@ public class InsertionSort {
 	 * 
 	 * ALWAYS START ITERATION AT 1
 	 * TO LOOK AT PREVIOUS ELEMENT
-	 * @param myArray
+	 * @param numbers
 	 * @return
 	 */
-	public int[] sortArray(int[] myArray) {
+	public int[] sortArray(int[] numbers) {
 		int value, j;
-		for (int i = 1; i < myArray.length; i++) {
-			value = myArray[i];
+		for (int i = 1; i < numbers.length; i++) {
+			value = numbers[i];
 			j = i - 1;
 			// Shift right ALL elements of arr[0..i-1], that are
 			// greater than value, to one position ahead
@@ -56,30 +57,35 @@ public class InsertionSort {
 			//
 			// The while loop ends with negative j value
 			// hence add 1 to value
-			while (j >=0 && myArray[j] > value) {
-				myArray[j+1] = myArray[j];
+			while (j >=0 && numbers[j] > value) {
+				numbers[j+1] = numbers[j];
 				// Decrement j index
 				j--;
 			}
 			// Set decremented j+1 element to value
-			myArray[j+1] = value;
-			if (i == myArray.length - 1) {
-				printArray("Sorted", myArray);
+			numbers[j+1] = value;
+			if (i == numbers.length - 1) {
+				printArray("Sorted", numbers);
 			}
 			else {
-				printArray("Step", myArray);
+				printArray("Step", numbers);
 			}
 		}
-		return myArray;
+		return numbers;
 	}
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		int[] myArray = { 12, 11, 13, 5, 6 };
+		//int[] numbers = { 12, 11, 13, 5, 6 };
+		Random random = new Random();
+		int[] numbers = new int[10];
+		for (int i = 0; i < numbers.length; i++) {
+			numbers[i] = random.nextInt(100);
+		}
 		InsertionSort is = new InsertionSort();
-		is.printArray("Orig", myArray);
-		is.sortArray(myArray);
+		is.printArray("Orig", numbers);
+		is.sortArray(numbers);
 	}
 }
