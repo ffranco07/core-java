@@ -1,90 +1,101 @@
 //package com.sandbox.algorithms;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.util.Random;
 
 /**
- * @author Francisco Franco
  *
  * QuickSort is a sorting algorithm, which 
- * leverages the divide-and-conquer principle. 
- * It has an average O(n log n) complexity and 
- * is one of the most used sorting algorithms, 
- * especially for big data volumes.
+ * leverages the divide-and-conquer principle.
+ *  
+ * Time Complexity: Varies between O(n log n) in the best case 
+ * to O(n2) in the worst case. It is one of the most used 
+ * sorting algorithms, especially for big data volumes.
  */
 
 public class QuickSort {
-	
-	// Swap array values at respective indices in array
-	private static void swap(int[] arr, int i, int j) {
-		int temp = arr[i];
-		arr[i] = arr[j];
-		arr[j] = temp;
-	}
-	
-	// Calculate partition
-	private static int partition(int arr[], int begin, int end) {
-		int pivot = arr[end];
-		int i = (begin-1);
 
-		System.out.println("begin:" + begin + " end:" + end);
-		
-		for (int j = begin; j < end; j++) {
-			if (arr[j] <= pivot) {
-				i++;
-				System.out.println("About to swap for i:" + i + " j:" + j);
-				swap(arr, i, j);
-			}
-		}
-		
-		swap(arr, i+1, end);
-		return i+1;
-	}
-	
 	// Quick sort the array
-	private static void sort(int[] arr, int begin, int end) {
-		if (begin < end) {
-			// Find partion index
-			int partitionIndex = partition(arr, begin, end);
-			System.out.println("partitionIndex:" + partitionIndex);
-			// Divide 
-			sort(arr, begin, partitionIndex-1);
-			sort(arr, partitionIndex+1, end);
-		}
-	}
+  private static void quicksort(int[] array) {
+    quicksort(array, 0, array.length - 1);
+  }
 	
-	// Complete the quickSort function
-	private static int[] quickSort(int[] arr) {
-		sort(arr, 0, arr.length - 1);
-		return arr;
-	}
-
-	// Print the array
-	private static void printArray(boolean isOriginal, int[] myArray) {
-		StringBuilder builder = new StringBuilder();
-		if (isOriginal) {
-			builder.append("Orig: ");
-		}
-		else {
-			System.out.print("Result: ");
-		}
-		for (int l = 0; l < myArray.length; l++) {
-			builder.append(myArray[l] + " ");
-		}
-		System.out.println(builder.toString());
-	}
-	
-	// Main method
-	public static void main(String[] args) throws IOException {
-		int[] arr = {4, 5, 3, 7, 2};
-		printArray(true, arr);
+	private static void quicksort(int[] array, int lowIndex, int highIndex) {
+		if (lowIndex >= highIndex) {
+      return;
+    }
 		
-		int[] result = quickSort(arr);
-		printArray(false, result);
-	}
+    int pivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
+    int pivot = array[pivotIndex];
+    swap(array, pivotIndex, highIndex);
+
+    int leftPointer = partition(array, lowIndex, highIndex, pivot);
+
+    quicksort(array, lowIndex, leftPointer - 1);
+    quicksort(array, leftPointer + 1, highIndex);
+  }
+
+	// Calculate partition
+  private static int partition(int[] array, int lowIndex, int highIndex, int pivot) {
+		//  Use additional pointers to traverse array/subarray (during recursion)
+    int leftPointer = lowIndex;
+    int rightPointer = highIndex - 1;
+
+    while (leftPointer < rightPointer) {
+
+      // Walk from the left until we find a number greater than the pivot
+			// or hit the right pointer.
+      while (array[leftPointer] <= pivot && leftPointer < rightPointer) {
+        leftPointer++;
+      }
+
+      // Walk from the right until we find a number less than the pivot
+			// or hit the left pointer.
+      while (array[rightPointer] >= pivot && leftPointer < rightPointer) {
+        rightPointer--;
+      }
+
+      swap(array, leftPointer, rightPointer);
+    }
+    
+    // This is different from what the video has and fixes an issue where 
+		// the last value could potentially be out of order. 
+    // Thanks to viewer Wilson Barbosa for suggesting the fix!
+    if(array[leftPointer] > array[highIndex]) {
+      swap(array, leftPointer, highIndex);
+    }
+    else {
+      leftPointer = highIndex;
+    }
+    
+    return leftPointer;
+  }
+
+  private static void swap(int[] array, int index1, int index2) {
+    int temp = array[index1];
+    array[index1] = array[index2];
+    array[index2] = temp;
+  }
+
+  private static void printArray(int[] numbers) {
+    for (int i = 0; i < numbers.length; i++) {
+      System.out.println(numbers[i]);
+    }
+  }
+
+	public static void main(String[] args) {
+    Random rand = new Random();
+    int[] numbers = new int[10];
+		
+    for (int i = 0; i < numbers.length; i++) {
+      numbers[i] = rand.nextInt(100);
+    }
+		
+    System.out.println("Before:");
+    printArray(numbers);
+
+    quicksort(numbers);
+
+    System.out.println("\nAfter:");
+    printArray(numbers);
+  }
 }
