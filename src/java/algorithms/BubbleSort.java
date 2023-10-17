@@ -36,8 +36,8 @@ public class BubbleSort {
 	}
 	
 	/**
-	 * Best Case Time Complexity: O(n)
-	 * Worst Time Complexity: O(n^2)
+	 * Time Complexity: O(n^2)
+	 * Auxiliary Space: O(1)
 	 * When Array is already sorted
 	 *
 	 * @param myArray
@@ -64,8 +64,8 @@ public class BubbleSort {
 	}
 	
 	/**
-	 * Best Case Time Complexity: O(n)
-	 * Worst Time Complexity: O(n^2)
+	 * Time Complexity: O(n^2)
+	 * Auxiliary Space: O(1)
 	 * Basically just skips 2nd for loop 
 	 * if myArray is already ordered
 	 * 
