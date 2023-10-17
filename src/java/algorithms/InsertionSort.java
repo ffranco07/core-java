@@ -16,6 +16,7 @@ public class InsertionSort {
 	}
 	
 	/**
+	 * @param tag
 	 * @param myArray
 	 */
 	private void printArray(String tag, int[] myArray) {

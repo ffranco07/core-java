@@ -17,88 +17,54 @@ public class BubbleSort {
 	}
 	
 	/**
-	 * @param isOriginal
+	 * @param tag
 	 * @param myArray
 	 */
-	private void printArray(boolean isOriginal, int[] myArray) {
-		if (isOriginal) {
-			System.out.print("Orig: ");
+	private void printArray(String tag, int[] myArray) {
+		StringBuilder builder = new StringBuilder();
+
+		if (tag.equals("Step")) {
+			builder.append("Step " + count + ": ");
+			count++;
 		}
 		else {
-			System.out.print(count + ") ");
+			builder.append(tag + ": ");
 		}
 		for (int l = 0; l < myArray.length; l++) {
-			System.out.print(myArray[l] + " ");
+			builder.append(myArray[l] + " ");
 		}
-		System.out.println("");
-		if (!isOriginal)
-			count++;
+		System.out.println(builder.toString());
 	}
-	
+
 	/**
 	 * Time Complexity: O(n^2)
 	 * Auxiliary Space: O(1)
-	 * When Array is already sorted
 	 *
 	 * @param myArray
 	 * @return
 	 */
 	public int[] sortArray(int[] myArray) {
+		boolean swapped = true;
 		int temp;
 		// Pass through entire array
-		for (int pass = 0; pass < (myArray.length); pass++) {
-		    //Limit value of j so tail is sinking in
-		    //One less element (last one) is needed to be compared
-		    //after each pass iteration
-			for (int j = 0; j < (myArray.length-pass-1); j++) {
-				if (myArray[j] > myArray[j+1]) {
-					// Swap elements so that they are ordered
-					temp = myArray[j];
-					myArray[j] = myArray[j+1];
-					myArray[j+1] = temp;
+		while (swapped) {
+			swapped = false;
+			for (int i = 0; i < myArray.length - 1; i++) {
+				if (myArray[i] > myArray[i+1]) {
+					swapped = true;
+					temp = myArray[i];
+					myArray[i] = myArray[i+1];
+					myArray[i+1] = temp;
+					printArray("Swap Step", myArray);	
 				}
-				printArray(false, myArray);	
+			}
+			if (!swapped) {
+				printArray("Sorted", myArray);
 			}
 		}
 		return myArray;
 	}
 	
-	/**
-	 * Time Complexity: O(n^2)
-	 * Auxiliary Space: O(1)
-	 * Basically just skips 2nd for loop 
-	 * if myArray is already ordered
-	 * 
-	 * @param myArray
-	 * @return
-	 */
-	public int[] sortArrayImproved(int[] myArray) {
-		int temp;
-		boolean swapped = false;
-		for (int pass = 0; pass < (myArray.length) && swapped; pass++) {
-			swapped = false;
-			//Limit value of j so tail is sinking in
-			//One less element (last one) is needed to be compared
-			//after each pass iteration
-			for (int j = 0; j < (myArray.length-pass-1); j++) {
-				if (myArray[j] > myArray[j+1]) {
-					// Swap elements so that they are ordered
-					temp = myArray[j];
-					myArray[j] = myArray[j+1];
-					myArray[j+1] = temp;
-					swapped = true;
-				}
-				printArray(false, myArray);
-			}
-			// If no two elements swapped
-			// by inner loop then done sorting
-			if (swapped == false) {
-			    break;
-			}
-		}
-		return myArray;
-	}
-
 	/**
 	 * @param args
 	 */
@@ -106,8 +72,8 @@ public class BubbleSort {
 		int[] myArray = {20, 15, 12, 30, -5, 3, 456};
 		//int[] myArray = {-5, 12, 15, 20, 30, 72, 456};
 		BubbleSort bs = new BubbleSort();
-		bs.printArray(true, myArray);
-		bs.sortArrayImproved(myArray);
+		bs.printArray("Orig", myArray);
+		bs.sortArray(myArray);
 	}
 
 }

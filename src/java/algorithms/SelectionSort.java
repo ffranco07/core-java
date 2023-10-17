@@ -21,26 +21,29 @@ public class SelectionSort {
 	}
 	
 	/**
+	 * @param tag
 	 * @param myArray
 	 */
-	private void printArray(boolean isOriginal, int[] myArray) {
-		if (isOriginal) {
-			System.out.print("Orig: ");
+	private void printArray(String tag, int[] myArray) {
+		StringBuilder builder = new StringBuilder();
+
+		if (tag.equals("Step")) {
+			builder.append("Step " + count + ": ");
+			count++;
 		}
 		else {
-			System.out.print(count + ") ");
+			builder.append(tag + ": ");
 		}
 		for (int l = 0; l < myArray.length; l++) {
-			System.out.print(myArray[l] + " ");
+			builder.append(myArray[l] + " ");
 		}
-		System.out.println("");
-		if (!isOriginal)
-			count++;
+		System.out.println(builder.toString());
 	}
 	
 	/**
-	 * Worst Time Complexity: O(n^2)
-	 * 
+	 * Time Complexity: O(n^2)
+	 * Auxiliary Space: O(1)
+	 *
 	 * @param myArray
 	 * @return
 	 */
@@ -60,7 +63,12 @@ public class SelectionSort {
 			temp = myArray[minIndex];
 			myArray[minIndex] = myArray[i];
 			myArray[i] = temp;
-			printArray(false, myArray);
+			if (i == myArray.length - 2) {
+				printArray("Sorted", myArray);
+			}
+			else {
+				printArray("Step", myArray);
+			}
 		}
 		return myArray;
 	}
@@ -71,7 +79,7 @@ public class SelectionSort {
 	public static void main(String[] args) {
 		int[] myArray = {64, 25, 12, 22, 11};
 		SelectionSort ss = new SelectionSort();
-		ss.printArray(true, myArray);
+		ss.printArray("Orig", myArray);
 		ss.sortArray(myArray);
 	}
 
