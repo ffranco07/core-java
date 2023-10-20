@@ -9,7 +9,10 @@ public class LinkedList {
 	private int size = 0; // number of elements
 	private Node head = null; // head of the list
 	
-	public LinkedList() {}
+	// Default constructor
+	public LinkedList() {
+		size = 0;
+	}
 	
 	// Inner class
 	public class Node {
@@ -42,6 +45,40 @@ public class LinkedList {
 		size++;
 		return true;
 	}
+
+	public void remove(int position) {
+		// Remove first node if position value is negative
+		if (position < 0) {
+			position = 0;
+		}
+		// Remove last node if position value 
+		// is greater than or equal to size
+		else if (position >= size) {
+			position = size - 1;
+		}
+		
+		if (head == null) {
+			return;
+		}
+
+		if (position == 0) {
+			head = head.next;
+		}
+		else {
+			Node last = head;
+			Node prevNode = null;;
+			
+			for (int i = 0; i < position; i++) {
+				prevNode = last;
+				last = last.next;
+			}
+			
+			// Update previous node's next pointer to 
+			// last.next node since "last" will be removed
+			prevNode.next = last.next;
+		}
+		size--;
+	}
 	
 	// Print linked list
 	public void printLinkedList(LinkedList linkedList) {
@@ -57,12 +94,14 @@ public class LinkedList {
 		}
 	}
 	
+	// Driver code
 	public static void main(String[] args) {
 		LinkedList linkedList = new LinkedList();
 		linkedList.add(1);
 		linkedList.add(2);
 		linkedList.add(3);
 		linkedList.add(4);
+		linkedList.remove(1);
 		linkedList.printLinkedList(linkedList);
 	}
 }
