@@ -21,7 +21,8 @@ public class MergeTwoSortedArrays {
 	}
 
 	/**
-	 * Worst Time Complexity: O(n1 + n2) 
+	 * Time Complexity : O(n1 + n2) 
+   * Auxiliary Space : O(n1 + n2) 
 	 * where n1 = a.length and n2 = b.length
 	 * 
 	 * @param a
@@ -38,6 +39,7 @@ public class MergeTwoSortedArrays {
 			// System.out.println("bIndex is: " + bIndex);
 			// System.out.println("sIndex is: " + sIndex);
 			if (a[aIndex] > b[bIndex]) {
+				// Post decrement indices so use their values first
 				sorted[sIndex--] = a[aIndex--];
 			} else {
 				sorted[sIndex--] = b[bIndex--];
@@ -95,7 +97,8 @@ public class MergeTwoSortedArrays {
 	}
 	
 	/**
-	 * Worst Time Complexity: O(n1 + n2) 
+	 * Time Complexity : O(n1 + n2) 
+   * Auxiliary Space : O(n1 + n2) 
 	 * where n1 = a.length and n2 = b.length
 	 * 
 	 * @param a
@@ -145,8 +148,8 @@ public class MergeTwoSortedArrays {
 	}
 	
 	/**
-	 * Worst Time Complexity: O(n1) 
-	 * where n1 = merged.length
+	 * Time Complexity : O(n) 
+	 * where n = merged.length
 	 * 
 	 * @param a
 	 * @param b
@@ -177,10 +180,10 @@ public class MergeTwoSortedArrays {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// int[] a = {11, 22, 33, 44};
-		// int[] b = {37, 48, 59, 100};
-		int[] a = { 1, 3, 7, 9 };
-		int[] b = { 2, 4, 6, 8 };
+		int[] a = {11, 22, 33, 44};
+		int[] b = {37, 48, 59, 100};
+		//int[] a = { 1, 3, 7, 9 };
+		//int[] b = { 2, 4, 6, 8 };
 		MergeTwoSortedArrays mtsa = new MergeTwoSortedArrays();
 		mtsa.printArray("Array a: ", a);
 		mtsa.printArray("Array b: ", b);
