@@ -27,6 +27,7 @@ public class BinaryTreePrintRootToLeaf {
 	
 	// Print out array
 	private void printArray(int[] path, int fillCount) {
+		System.out.print("Tree path: ");
 		for (int i = 0; i < fillCount; i++) {
 			// Print on same line
 			System.out.print(path[i]);

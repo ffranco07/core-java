@@ -33,10 +33,10 @@ public class BinarySearchTree {
 	 */
 	private void printResult(int data, boolean notFound) {
 		if (notFound) {
-			System.out.println(data + " not found");
+			System.out.println("Data: " + data + " not found");
 		}
 		else {
-			System.out.println(data + " found");
+			System.out.println("Data: " + data + " found");
 		}
 	}
 	
@@ -85,6 +85,10 @@ public class BinarySearchTree {
 		tree.insert(tree.root, 7);
 		tree.insert(tree.root, 6);
 		tree.insert(tree.root, 8);
+
+		// Print BST via BinaryTreePrintRootToLeaf
+		BinaryTreePrintRootToLeaf btPrint = new BinaryTreePrintRootToLeaf();
+		btPrint.printPaths(tree.root);
 		
 		// Search for this data key
 		int key = 7;
@@ -97,9 +101,5 @@ public class BinarySearchTree {
 		
 		// Searching in a BST
 		tree.printResult(key, (tree.search(tree.root, key) == null));
-
-		// Print BST via BinaryTreePrintRootToLeaf
-		BinaryTreePrintRootToLeaf btPrint = new BinaryTreePrintRootToLeaf();
-		btPrint.printPaths(tree.root);
 	}
 }
