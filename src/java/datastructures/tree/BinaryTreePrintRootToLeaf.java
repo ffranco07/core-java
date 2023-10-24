@@ -1,4 +1,4 @@
-package com.sandbox.datastructures.tree;
+//package com.sandbox.datastructures.tree;
 
 /**
  * @author Francisco Franco
@@ -11,24 +11,31 @@ package com.sandbox.datastructures.tree;
  */
 
 public class BinaryTreePrintRootToLeaf {
-	// Inner class
-	private class Node {
-		public int value;
-		public Node leftNode;
-		public Node rightNode;
-		
-		public Node(int value) {
-			this.value = value;
-			this.leftNode = null;
-			this.rightNode = null;
-		}
-	}
+	// 	// Inner class
+	// 	private class Node {
+	// 		public int data;
+	// 		public Node left;
+	// 		public Node right;
 	
-	// Invoke recursive function
-	private void printPaths(Node node) {
-		// path value array
-		int path[] = new int[1000];
-		printPathsRecursive(node, path, 0);
+	// 		// Constructor
+	// 		public Node(int value) {
+	// 			this.data = value;
+	// 			this.left = null;
+	// 			this.right = null;
+	// 		}
+	// 	}
+	
+	// Print out array
+	private void printArray(int[] path, int fillCount) {
+		for (int i = 0; i < fillCount; i++) {
+			// Print on same line
+			System.out.print(path[i]);
+			if (i != fillCount -1) {
+				System.out.print("->");
+			}
+		}
+		// Print new line
+		System.out.println("");
 	}
 	
 	/**
@@ -44,37 +51,36 @@ public class BinaryTreePrintRootToLeaf {
 			return;
 		}
 		// Add this node to path array
-		path[fillCount] = node.value;
+		path[fillCount] = node.data;
 		fillCount++;
 		
 		// Terminating recursive condition
-		if (node.leftNode == null && node.rightNode == null) {
+		if (node.left == null && node.right == null) {
 			printArray(path, fillCount);
 		}
 		else {
-			printPathsRecursive(node.leftNode, path, fillCount);
-			printPathsRecursive(node.rightNode, path, fillCount);
+			printPathsRecursive(node.left, path, fillCount);
+			printPathsRecursive(node.right, path, fillCount);
 		}
 	}
-	
-	// Print out array
-	private void printArray(int[] path, int fillCount) {
-		for (int i = 0; i < fillCount; i++) {
-			System.out.print(path[i] + " ");
-		}
-		System.out.println("");
+
+	// Invoke recursive function
+	public void printPaths(Node node) {
+		// path value array
+		int path[] = new int[10];
+		printPathsRecursive(node, path, 0);
 	}
 	
 	// Main method to execute functions above
 	public static void main(String[] args) {
 		BinaryTreePrintRootToLeaf tree = new BinaryTreePrintRootToLeaf();
-	  BinaryTreePrintRootToLeaf.Node root = tree.new Node(3);
-		root.leftNode = tree.new Node(2);
-		root.rightNode = tree.new Node(7);
-		root.leftNode.leftNode = tree.new Node(1);
-		root.rightNode.leftNode = tree.new Node(6);
-		root.rightNode.rightNode = tree.new Node(8);
-		root.rightNode.rightNode.rightNode = tree.new Node(9);
+		Node root = new Node(3);
+		root.left = new Node(2);
+		root.right = new Node(7);
+		root.left.left = new Node(1);
+		root.right.left = new Node(6);
+		root.right.right = new Node(8);
+		root.right.right.right = new Node(9);
 		tree.printPaths(root);
 	}
 }

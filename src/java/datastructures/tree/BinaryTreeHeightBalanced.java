@@ -30,17 +30,17 @@ public class BinaryTreeHeightBalanced {
 
 	public Node root;
 
-	// A binary tree node
-	private static class Node {
-		public int id;
-		public Node left, right;
-
-		public Node(int d) {
-			id = d;
-			left = right = null;
-		}
-	}
-
+	// 	// A binary tree node
+	// 	private static class Node {
+	// 		public int data;
+	// 		public Node left, right;
+	
+	// 		public Node(int d) {
+	// 			data = d;
+	// 			left = right = null;
+	// 		}
+	// 	}
+	
 	private void log(String message) {
 		if (DEBUG) {
 			System.out.println(message);
@@ -65,13 +65,13 @@ public class BinaryTreeHeightBalanced {
 		}
 		// If tree is not empty then height = 1 + max of left
 		// height and right heights */
-		log(" height() node id: " + node.id);
+		log(" height() node id: " + node.data);
 		if (node.left != null)
-			log("height() node left id: " + node.left.id);
+			log("height() node left id: " + node.left.data);
 		if (node.right != null)
-			log("height() node right id: " + node.right.id);
+			log("height() node right id: " + node.right.data);
 		int counter = 1 + max(height(node.left), height(node.right));
-		log("height() counter: " + counter + " for node: " + node.id);
+		log("height() counter: " + counter + " for node: " + node.data);
 		return counter;
 	}
 	
@@ -88,11 +88,11 @@ public class BinaryTreeHeightBalanced {
 			return true;
 		}
 
-		log("isBalaned() node id: " + node.id);
+		log("isBalaned() node id: " + node.data);
 		if (node.left != null)
-			log("isBalanced() node left id: " + node.left.id);
+			log("isBalanced() node left id: " + node.left.data);
 		if (node.right != null)
-			log("isBalanced() node right id: " + node.right.id);
+			log("isBalanced() node right id: " + node.right.data);
 		
 		/* Get the height of left and right sub trees */
 		lh = height(node.left);
