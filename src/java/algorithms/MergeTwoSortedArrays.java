@@ -1,5 +1,8 @@
 //package com.sandbox.algorithms;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * Given two sorted arrays, merge them 
  * into a single sorted array
@@ -24,7 +27,9 @@ public class MergeTwoSortedArrays {
 	 * Time Complexity : O(n1 + n2) 
    * Auxiliary Space : O(n1 + n2) 
 	 * where n1 = a.length and n2 = b.length
-	 * 
+	 *
+	 * Traverse from end to front for each array 
+	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -64,6 +69,8 @@ public class MergeTwoSortedArrays {
 	 * Worst Time Complexity: O(n1 + n2) 
 	 * where n1 = a.length and n2 = b.length
 	 * 
+	 * Traverse from front to end for each array 
+	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -101,6 +108,8 @@ public class MergeTwoSortedArrays {
    * Auxiliary Space : O(n1 + n2) 
 	 * where n1 = a.length and n2 = b.length
 	 * 
+	 * Traverse from front to end for each array 
+	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -150,7 +159,10 @@ public class MergeTwoSortedArrays {
 	/**
 	 * Time Complexity : O(n) 
 	 * where n = merged.length
-	 * 
+	 *
+	 * Traverse from front to end for each array 
+	 * with only 1 for loop
+	 *
 	 * @param a
 	 * @param b
 	 * @return
@@ -177,6 +189,39 @@ public class MergeTwoSortedArrays {
 	}
 	
 	/**
+	 * Time Complexity : (O(nlog(n) + mlog(m)) 
+	 * Auxiliary Space : O(n)
+	 *
+	 * Use TreeMap which stores keys in sorted order
+	 *
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public int[] merge5(int a[], int b[]) {
+		Map<Integer,Boolean> mp = new TreeMap<Integer,Boolean>();
+		int n = a.length;
+		int m = b.length;
+		int mergedIndex = 0;
+		int[] merged = new int[n + m];
+		
+		// Inserting values to a map.
+		for(int i = 0; i < n; i++) {
+			mp.put(a[i], true);
+		}
+		for(int i = 0;i < m;i++) {
+			mp.put(b[i], true);
+		}
+		
+		// Printing keys of the map.
+		for (Map.Entry<Integer,Boolean> me : mp.entrySet()) {
+			merged[mergedIndex] = me.getKey();
+			mergedIndex++;
+		}
+		return merged;
+	}
+	
+	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
@@ -187,7 +232,7 @@ public class MergeTwoSortedArrays {
 		MergeTwoSortedArrays mtsa = new MergeTwoSortedArrays();
 		mtsa.printArray("Array a: ", a);
 		mtsa.printArray("Array b: ", b);
-		int[] merged = mtsa.merge4(a, b);
+		int[] merged = mtsa.merge5(a, b);
 		mtsa.printArray("Merged: ", merged);
 	}
 }
