@@ -8,9 +8,8 @@
  * each node has 0 children, 1 child, or 2 children. 
  * Java program to search a given data key in a given BST
  *
- * Time complexity: O(h), where h is the height of the BST.
- * Auxiliary Space: O(h), where h is the height of the BST. This is because the maximum 
- * amount of space needed to store the recursion stack would be h.
+ * Time Complexity: O(log n)
+ * Space Complexity: O(n)
  * 
  */ 
 
