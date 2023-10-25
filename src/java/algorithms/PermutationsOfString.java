@@ -8,7 +8,7 @@ import java.util.*;
 public class PermutationsOfString {
 	
 	// Recursive method that prints out each permutation of string
-	// Time Complexity: O(N2), where N is the length of the given string
+	// Time Complexity: O(N^2), where N is the length of the given string
 	// Auxiliary Space: O(N)
 	private static void permutation(String prefix, String str) {
     int strLength = str.length();

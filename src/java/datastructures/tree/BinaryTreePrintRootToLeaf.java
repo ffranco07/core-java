@@ -6,7 +6,7 @@
  * Print Node values from root to leafs
  *
  * NOTES: 
- * 1) Node has reference to Left and Right Nodes
+ * 1) Each Node has reference to Left and Right Nodes
  * 2) Ordered search where where left <= n < right
  */
 
@@ -31,7 +31,7 @@ public class BinaryTreePrintRootToLeaf {
 		for (int i = 0; i < fillCount; i++) {
 			// Print on same line
 			System.out.print(path[i]);
-			if (i != fillCount -1) {
+			if (i != fillCount - 1) {
 				System.out.print("->");
 			}
 		}
@@ -51,11 +51,12 @@ public class BinaryTreePrintRootToLeaf {
 		if (node == null) {
 			return;
 		}
-		// Add this node to path array
+		// Add this node to path array and 
+		// increment fill node count in array
 		path[fillCount] = node.data;
 		fillCount++;
 		
-		// Terminating recursive condition
+		// Terminating recursive condition at leaf node
 		if (node.left == null && node.right == null) {
 			printArray(path, fillCount);
 		}
