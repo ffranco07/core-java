@@ -6,6 +6,10 @@ import java.util.Random;
  * MergeSort is a sorting algorithm, which 
  * leverages the divide-and-conquer principle.
  *
+ * 1) Divide: Break input into left half and right half with midIndex, leftHalf, rightHalf
+ * 2) Recursion: Recursive call for each half (sub problem)
+ * 3) Conquer: Combine/Merge these results from each half (sub problem)
+ * 
  * Time Complexity: O(N log(N)), Merge Sort is a 
  * recursive algorithm and time complexity can be 
  * expressed as following recurrence relation.
@@ -29,7 +33,7 @@ public class MergeSort {
 		System.out.println(tag + ": " + builder.toString());
   }
 	
-	private static void merge (int[] inputArray, int[] leftHalf, int[] rightHalf) {
+	private static void merge(int[] inputArray, int[] leftHalf, int[] rightHalf) {
 		// DEBUG
 		System.out.println("MERGING LEFT HALF & RIGHT HALF INPUT ARRAY LENGTH:" + inputArray.length);
 		
@@ -47,9 +51,11 @@ public class MergeSort {
 		//e.printStackTrace();
 		//}
 		
+		// SIZE OF LEFT HALF & RIGHT HALF
 		int leftSize = leftHalf.length;
 		int rightSize = rightHalf.length;
 		
+		// THREE INDICES
 		int i = 0, j = 0, k = 0;
 		
 		while (i < leftSize && j < rightSize) {
@@ -75,6 +81,8 @@ public class MergeSort {
 			j++;
 			k++;
 		}
+		// DEBUG
+		printArray("inputArray", inputArray);
 	}
 	
 	private static void mergeSort(int[] inputArray) {
@@ -86,14 +94,13 @@ public class MergeSort {
     
     int midIndex = inputLength / 2;
     int[] leftHalf = new int[midIndex];
-	
-    int[] rightHalf = new int[inputLength - midIndex];
+		int[] rightHalf = new int[inputLength - midIndex];
     
     for (int i = 0; i < midIndex; i++) {
       leftHalf[i] = inputArray[i];
     }
-    for (int i = midIndex; i < inputLength; i++) {
-      rightHalf[i - midIndex] = inputArray[i];
+    for (int j = midIndex; j < inputLength; j++) {
+      rightHalf[j - midIndex] = inputArray[j];
     }
 
 		// DEBUG
@@ -101,27 +108,32 @@ public class MergeSort {
 
 		// DEBUG
 		printArray("RIGHT HALF", rightHalf);
-    
+    // RECURSIVE CALL FOR LEFT HALF
     mergeSort(leftHalf);
 		// DEBUG
 		System.out.println("LEFT HALF MERGE SORT DONE");
+		
+		// RECURSIVE CALL FOR RIGHT HALF
     mergeSort(rightHalf);
 		// DEBUG
 		System.out.println("RIGHT HALF MERGE SORT DONE");
     
-		// Merge left half with right half
+		// COMBINE/MERGE LEFT HALF WITH RIGHT HALF
     merge(inputArray, leftHalf, rightHalf);
 		
 		System.out.println("##########################");
   }
 
+	// Driver code
 	public static void main(String[] args) {
+		//int[] numbers = {37, 34, 81, 78, 11, 6};
+
 		Random rand = new Random();
     //int[] numbers = new int[10];
 		int[] numbers = new int[6];
 		
 		for (int i = 0; i < numbers.length; i++) {
-      //numbers[i] = rand.nextInt(1000000);
+			//numbers[i] = rand.nextInt(1000000);
 			numbers[i] = rand.nextInt(100);
     }
 

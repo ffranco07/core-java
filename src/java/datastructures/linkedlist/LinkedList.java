@@ -3,6 +3,9 @@
  *
  * Implementing a Linked List in java
  *
+ * Time Complexity: O(1) -> for add/remove from beginning
+ * Time Complexity: O(n) -> for search
+ * Space Complexity: O(n)
  */
 
 public class LinkedList {
@@ -66,7 +69,17 @@ public class LinkedList {
 		}
 		else {
 			Node last = head;
-			Node prevNode = null;;
+			Node prevNode = null;
+			int nodeIndex = 1;
+
+			//while (last.next != null) {
+			//prevNode = last;
+			//last = last.next;
+			//if (nodeIndex == position) {
+			//prevNode.next = last.next;
+			//	break;
+			//}
+			//}
 			
 			for (int i = 0; i < position; i++) {
 				prevNode = last;
@@ -91,6 +104,7 @@ public class LinkedList {
 				System.out.println("data:" + last.data);
 				last = last.next;
 			}
+			System.out.println("size:" + size);
 		}
 	}
 	
@@ -102,6 +116,7 @@ public class LinkedList {
 		linkedList.add(3);
 		linkedList.add(4);
 		linkedList.remove(1);
+		linkedList.remove(0);
 		linkedList.printLinkedList(linkedList);
 	}
 }

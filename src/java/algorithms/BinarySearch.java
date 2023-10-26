@@ -8,6 +8,10 @@ import java.util.Arrays;
  * A half interval search algorithm that finds 
  * the position (index) of a target value within 
  * a sorted array.
+ *
+ * Time Complexity: O(log n)
+ * Space Complexity: O(1)
+ *
  */
 
 public class BinarySearch {
@@ -36,6 +40,7 @@ public class BinarySearch {
 		int hiIndex = list.length - 1;
 		int midIndex;
 		while(lowIndex <= hiIndex) {
+			// ALWAYS CALCULATE MIDINDEX
 			midIndex = (lowIndex + hiIndex) / 2;
 			//System.out.println("midIndex is: " + midIndex);
 			if (value > list[midIndex]) {

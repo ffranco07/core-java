@@ -64,13 +64,11 @@ public class FibonacciSequence {
 		if (size == 0) {
 			return 0;
 		}
-		else if (size == 1) {
+		if (size == 1) {
 			return 1;
 		} 
-		else {
-	    int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
-			return sum;
-		}
+		int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
+		return sum;
 	}
 	
 	/**
@@ -79,7 +77,7 @@ public class FibonacciSequence {
 	public static void main(String[] args) {
 		// Ex. 1, 1, 2, 3, 5, 8, 13
 		FibonacciSequence fs = new FibonacciSequence();
-		int size = 5;
+		int size = 6;
 		System.out.println("fibSeq input size: " + size);
 		System.out.println("fibSeqRecursion output: " + fs.fibSeqRecursion(size));
 		int[] seq = fs.fibSeqIterative(5);

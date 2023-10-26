@@ -40,37 +40,40 @@ public class BinaryTreePrintRootToLeaf {
 	}
 	
 	/**
-	 * Time Complexity: O(n^2)
+	 * Time Complexity: O(n)
+	 * Space Complexity: O(h) where h is the height of the tree
 	 * 
 	 * @param node
 	 * @param path
 	 * @param fillCount
 	 */
-	private void printPathsRecursive(Node node, int[] path, int fillCount) {
+	private void printPathsRecursive(Node root, int[] path, int fillCount) {
+		// Base case
 		// Terminating recursive condition
-		if (node == null) {
+		if (root == null) {
 			return;
 		}
-		// Add this node to path array and 
+		// Add this root data to path array and 
 		// increment fill node count in array
-		path[fillCount] = node.data;
+		path[fillCount] = root.data;
 		fillCount++;
 		
+		// Base case
 		// Terminating recursive condition at leaf node
-		if (node.left == null && node.right == null) {
+		if (root.left == null && root.right == null) {
 			printArray(path, fillCount);
 		}
 		else {
-			printPathsRecursive(node.left, path, fillCount);
-			printPathsRecursive(node.right, path, fillCount);
+			printPathsRecursive(root.left, path, fillCount);
+			printPathsRecursive(root.right, path, fillCount);
 		}
 	}
 
 	// Invoke recursive function
-	public void printPaths(Node node) {
+	public void printPaths(Node root) {
 		// path value array
 		int path[] = new int[10];
-		printPathsRecursive(node, path, 0);
+		printPathsRecursive(root, path, 0);
 	}
 	
 	// Main method to execute functions above

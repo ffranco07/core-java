@@ -39,8 +39,7 @@ public class BinarySearchTree {
 		}
 	}
 	
-	// A utility function to insert
-	// a new node with given data key in BST
+	// Insert node data in BST
 	public Node insert(Node root, int data) {
 		// If the tree is empty, return a new node
 		if (root == null) {
@@ -58,18 +57,23 @@ public class BinarySearchTree {
 		return root;
 	}
 	
-	// Utility function to search a data in a BST
+	// Search for node data in a BST
 	public Node search(Node root, int data) {
-		// Base Cases: root is null or data is present at root
-		if (root == null || root.data == data)
+		// Base cases
+		// Root is null so return root as null
+		// Data key matches root's data so return root node
+		if (root == null || data == root.data) {
 			return root;
-		
+		}
+		// Data key is less than root's data key
+		else if (data < root.data) {
+			return search(root.left, data);
+		}
 		// Data key is greater than root's data key
-		if (root.data < data)
+		else if (data > root.data) {
 			return search(root.right, data);
-		
-		// Data key is smaller than root's data key
-		return search(root.left, data);
+		}
+		return null;
 	}
 	
 	// Driver Code
