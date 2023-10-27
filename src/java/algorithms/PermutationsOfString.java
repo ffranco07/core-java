@@ -19,11 +19,11 @@ import java.util.*;
 public class PermutationsOfString {
 	
 	// Recursive method that prints out each permutation of string
-	// Time Complexity: O(N^2), where N is the length of the given string
+	// Time Complexity: O(N * N!), where N is the length of the given string
 	// Auxiliary Space: O(N)
 	private static String permutationRecursive(String prefix, String str) {
 		// DEBUG
-		//System.out.println("prefix: " + prefix + " str: " + str);
+		System.out.println("prefix: " + prefix + " str: " + str);
     int strLength = str.length();
 		String remainingChars = null;
 		String start = null , end = null;
@@ -57,6 +57,41 @@ public class PermutationsOfString {
 		return builder.toString();
 	}
 
+	// Iterative method to generate all permutations of a string using ArrayList
+	public static void permutationIterative2(String str) {
+		if (str == null || str.length() == 0) {
+			return;
+		}
+		
+		// Create an empty ArrayList to store (partial) permutations
+		List<String> partial = new ArrayList<>();
+		
+		// Initialize the list with the first character of the string
+		partial.add(String.valueOf(str.charAt(0)));
+		
+		// Do for every character of the specified string
+		for (int i = 1; i < str.length(); i++) {
+			// Consider previously constructed partial permutation one by one
+			
+			// Use traditinal for loop to avoid ConcurrentModificationException
+			// Enhanced for loops use fail-fast Collection Iterator interface 
+			// for removal which will cause ConcurrentModificationException
+			for (int j = partial.size() - 1; j >= 0 ; j--) {
+				// Remove current partial permutation from the ArrayList
+				String s = partial.remove(j);
+				
+				// Insert the next char of string at all possible positions 
+				// of current partial permutation and add to List
+				for (int k = 0; k <= s.length(); k++) {
+					// Advice: use StringBuilder for concatenation
+					partial.add(s.substring(0, k) + str.charAt(i) + s.substring(k));
+				}
+			}
+		}
+		
+		System.out.println(partial);
+	}
+	
 	// Iterative method that prints out each permutation of string
 	private static void permutationIterative(String str) {
 		// Queue uses FIFO (like a Lunch Line)
@@ -109,16 +144,16 @@ public class PermutationsOfString {
 		String allPermutations = permutationRecursive("", str);
 		System.out.println("[" + allPermutations + "]");
 	}
-	
+
 	// Driver code
 	public static void main(String[] args) {
-		String s = "abb";
+		String s = "abc";
 		System.out.println("Orig:" + s);
 		//String s = "ABC";
 		//String s = "ABCD";
 		System.out.println("Recursive:");
 		permutationRecursive(s);
 		System.out.println("Iterative:");
-		permutationIterative(s);
+		permutationIterative2(s);
 	}
 }
