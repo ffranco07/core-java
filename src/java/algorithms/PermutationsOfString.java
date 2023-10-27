@@ -116,9 +116,9 @@ public class PermutationsOfString {
 		System.out.println("Orig:" + s);
 		//String s = "ABC";
 		//String s = "ABCD";
-		System.out.println("RECURSIVE:");
+		System.out.println("Recursive:");
 		permutationRecursive(s);
-		System.out.println("ITERATIVE:");
+		System.out.println("Iterative:");
 		permutationIterative(s);
 	}
 }
