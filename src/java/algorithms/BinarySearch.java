@@ -9,6 +9,17 @@ import java.util.Arrays;
  * the position (index) of a target value within 
  * a sorted array.
  *
+ * With binary search, we initially consider the entire 
+ * input (n elements). After the first step, we only 
+ * consider n / 2 elements. After the second step, we only 
+ * consider n / 4 elements, and so on. At each step, we are
+ * reducing our search space by 50%, which gives us 
+ * a logarithmic time complexity.
+ *
+ * O(log n) means that somewhere in your algorithm, 
+ * the input is being reduced by a percentage at 
+ * every step.
+ *
  * Time Complexity: O(log n)
  * Space Complexity: O(1)
  *
