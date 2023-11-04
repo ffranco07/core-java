@@ -1,3 +1,4 @@
+
 /**
  * @author Francisco Franco
  *
@@ -23,9 +24,10 @@
 import java.util.Random;
 
 public class SubarrayMaxSum {
-	
-	public SubarrayMaxSum() {}
-	
+
+	public SubarrayMaxSum() {
+	}
+
 	/**
 	 * @param tag
 	 * @param myArray
@@ -38,7 +40,7 @@ public class SubarrayMaxSum {
 		}
 		System.out.println(builder.toString());
 	}
-	
+
 	/**
 	 * Time Complexity: O(n)
 	 * Space Complexity: O(1)
@@ -48,24 +50,24 @@ public class SubarrayMaxSum {
 	 * @return
 	 */
 	public static int findMaxSumSubarray(int[] nums, int k) {
-    int currSum = 0;
-    for (int i = 0; i < k; i++) {
+		int currSum = 0;
+		for (int i = 0; i < k; i++) {
 			currSum += nums[i];
-    }
-		
-    int maxSum = currSum;
-    for (int i = k; i < nums.length; i++) {
+		}
+
+		int maxSum = currSum;
+		for (int i = k; i < nums.length; i++) {
 			currSum += nums[i] - nums[i - k];
 			maxSum = Math.max(maxSum, currSum);
-    }
-		
-    return maxSum;
+		}
+
+		return maxSum;
 	}
-	
+
 	// Driver code
 	public static void main(String args[]) {
 		// Find max sum for a sub array of a particular size
-		//int[] array = {6, 1, 6, 8, -3, -2};
+		// int[] array = {6, 1, 6, 8, -3, -2};
 		int max = 10, min = -3;
 		int[] nums = new int[6];
 		Random random = new Random();
@@ -73,13 +75,13 @@ public class SubarrayMaxSum {
 			nums[i] = random.nextInt(max - min) + min;
 		}
 		printArray("Orig", nums);
-		
+
 		// Subarray target size
 		int targetSize = 2;
 		System.out.println("subarray targetSize: " + targetSize);
-		
+
 		// Subarray max sum for target size
 		int maxSum = findMaxSumSubarray(nums, targetSize);
 		System.out.println("maxSum: " + maxSum);
 	}
-} 
+}
