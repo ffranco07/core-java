@@ -23,10 +23,9 @@
 
 import java.util.Random;
 
-public class SubarrayMaxSum {
+public class LongestSubarraySum {
 
-	public SubarrayMaxSum() {
-	}
+	public LongestSubarraySum() {}
 
 	/**
 	 * @param tag
@@ -49,24 +48,31 @@ public class SubarrayMaxSum {
 	 * @param k
 	 * @return
 	 */
-	public static int findMaxSumSubarray(int[] nums, int k) {
-		int currSum = 0;
-		for (int i = 0; i < k; i++) {
-			currSum += nums[i];
-		}
+	public static int findLongestSubarray(int[] nums, int k) {
+		int left = 0;
+		int right = 0;
+    int currSum = 0; // currSum is the current sum of the window
+    int result = 0;
 
-		int maxSum = currSum;
-		for (int i = k; i < nums.length; i++) {
-			currSum += nums[i] - nums[i - k];
-			maxSum = Math.max(maxSum, currSum);
-		}
+    for (right = 0; right < nums.length; right++) {
+        currSum += nums[right];
+        while (currSum > k) {
+            currSum -= nums[left];
+            left++;
+        }
 
-		return maxSum;
+        result = Math.max(result, right - left + 1);
+    }
+		
+		System.out.println("left: " + left);
+		System.out.println("right: " + (right - 1));
+
+    return result;
 	}
 
 	// Driver code
 	public static void main(String args[]) {
-		// Find max sum for a subarray of a particular size
+		// Find longest subarray size less than or equal to target sum
 		// int[] array = {6, 1, 6, 8, -3, -2};
 		int max = 10, min = -3;
 		int[] nums = new int[6];
@@ -76,12 +82,12 @@ public class SubarrayMaxSum {
 		}
 		printArray("Orig", nums);
 
-		// Subarray target size
-		int targetSize = 2;
-		System.out.println("subarray targetSize: " + targetSize);
+		// Target sum
+		int targetSum = 8;
+		System.out.println("targetSum: " + targetSum);
 
-		// Subarray max sum for target size
-		int maxSum = findMaxSumSubarray(nums, targetSize);
-		System.out.println("maxSum: " + maxSum);
+		// Find longest subarray size for target sum
+		int longestSubarray = findLongestSubarray(nums, targetSum);
+		System.out.println("longestSubarray: " + longestSubarray);
 	}
 }
