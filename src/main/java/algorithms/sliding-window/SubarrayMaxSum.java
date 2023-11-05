@@ -19,6 +19,8 @@
  * means if the logic done for each window is O(1), sliding
  * window algorithms run in O(n), which is much faster.
  *
+ * Given an integer array nums and an integer k, find the sum 
+ * of the subarray with the largest sum whose length is k.
  */
 
 import java.util.Random;

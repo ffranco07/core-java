@@ -19,6 +19,10 @@
  * means if the logic done for each window is O(1), sliding
  * window algorithms run in O(n), which is much faster.
  *
+ * Given an array of positive integers nums and an integer
+ * k, find the length of the longest subarray whose sum is 
+ * less than or equal to k.
+ * 
  */
 
 import java.util.Random;
@@ -39,7 +43,7 @@ public class LongestSubarraySum {
 		}
 		System.out.println(builder.toString());
 	}
-
+	
 	/**
 	 * Time Complexity: O(n)
 	 * Space Complexity: O(1)
@@ -53,23 +57,23 @@ public class LongestSubarraySum {
 		int right = 0;
     int currSum = 0; // currSum is the current sum of the window
     int result = 0;
-
+		
     for (right = 0; right < nums.length; right++) {
-        currSum += nums[right];
-        while (currSum > k) {
-            currSum -= nums[left];
-            left++;
-        }
-
-        result = Math.max(result, right - left + 1);
+			currSum += nums[right];
+			while (currSum > k) {
+				currSum -= nums[left];
+				left++;
+			}
+			
+			result = Math.max(result, right - left + 1);
     }
 		
 		System.out.println("left: " + left);
 		System.out.println("right: " + (right - 1));
-
+		
     return result;
 	}
-
+	
 	// Driver code
 	public static void main(String args[]) {
 		// Find longest subarray size less than or equal to target sum
@@ -81,11 +85,11 @@ public class LongestSubarraySum {
 			nums[i] = random.nextInt(max - min) + min;
 		}
 		printArray("Orig", nums);
-
+		
 		// Target sum
 		int targetSum = 8;
 		System.out.println("targetSum: " + targetSum);
-
+		
 		// Find longest subarray size for target sum
 		int longestSubarray = findLongestSubarray(nums, targetSum);
 		System.out.println("longestSubarray: " + longestSubarray);
