@@ -87,7 +87,7 @@ public class LongestBinarySubstring {
 
 		System.out.println("Orig: " + builder.toString());
 
-		// Find longest substring only 1's after first 0 flipped to 1
+		// Find longest substring only 1's after 0 flipped to 1
 		int longestSubstring = findLongestSubstringOnly1s(builder.toString());
 		System.out.println("longestSubstring: " + longestSubstring);
 	}
