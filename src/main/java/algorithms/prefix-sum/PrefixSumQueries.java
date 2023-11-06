@@ -7,7 +7,6 @@
  * of all elements up to the index i (inclusive). For example, given 
  * nums = [5, 2, 1, 6, 3, 8], we would have prefix = [5, 7, 8, 14, 17, 25].
  *
- *
  * Given an integer array nums, an array queries where queries[i] = [x, y] 
  * and an integer limit, return a boolean array that represents the answer 
  * to each query. A query is true if the sum of the subarray from x to y is 
@@ -108,7 +107,6 @@ public class PrefixSumQueries {
 
 	// Driver code
 	public static void main(String args[]) {
-		// Find max sum for a subarray of a particular size
 		// int[] array = {6, 1, 6, 8, -3, -2};
 		int max = 10, min = -3;
 		int[] nums = new int[6];
@@ -126,7 +124,7 @@ public class PrefixSumQueries {
 		int limit = 13;
 		System.out.println("Limit: " + limit);
 
-		// Subarray max sum for target size
+		// Boolean array if prefix sum indices exceed limit
 		boolean[] prefixSumExceedsLimit = answerQueries(nums, queries, limit);
 		printArray("Exceeds Limit" , prefixSumExceedsLimit);
 	}
