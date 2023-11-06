@@ -13,6 +13,9 @@ public class Arrays2D {
 	}
 	
 	public static void main(String args[]) {
+		// Java stores as "array of arrays"
+		// 3 arrays with 4 elements each OR
+		// 3 rows, with 4 columns
 		int[][] arr2d={{1,2,3,4},{5,6,7,8},{9,10,11,12}};
 		System.out.println("arr2d:" + arr2d);
 		System.out.println("arr2d length:" + arr2d.length);
