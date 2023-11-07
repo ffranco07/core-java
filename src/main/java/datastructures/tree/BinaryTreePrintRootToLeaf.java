@@ -3,11 +3,18 @@
 /**
  * @author Francisco Franco
  *
- * Print Node values from root to leafs
- *
+ * Print Node values from root to leafs using Depth-First Search (DFS) 
+ * using preorder traversal
+ * 
  * NOTES: 
  * 1) Each Node has reference to Left and Right Nodes
  * 2) Ordered search where where left <= n < right
+ *
+ * Name of each traversal is describing when the current node's logic is performed:
+ * preorder  -> before children    -> DLR (Data, Left, Right)
+ * inorder   -> middle of children -> LDR (Left, Data, Rigth)
+ * postorder -> after children     -> LRD (Left, Right, Data)
+ *
  */
 
 public class BinaryTreePrintRootToLeaf {
@@ -40,6 +47,7 @@ public class BinaryTreePrintRootToLeaf {
 	}
 	
 	/**
+	 * DFS - preorder (Data, Left, Right)
 	 * Time Complexity: O(n)
 	 * Space Complexity: O(h) where h is the height of the tree
 	 * 
