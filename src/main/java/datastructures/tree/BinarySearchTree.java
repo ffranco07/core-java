@@ -8,6 +8,9 @@
  * each node has 0 children, 1 child, or 2 children. 
  * Java program to search a given data key in a given BST
  *
+ * A node’s height is the number of edges to its most distant leaf node. 
+ * On the other hand, a node’s depth is the number of edges back up to the root.
+ *
  * Time Complexity: O(log n)
  * Space Complexity: O(n)
  * 
