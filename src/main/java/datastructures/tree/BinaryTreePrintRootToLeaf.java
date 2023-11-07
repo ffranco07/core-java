@@ -48,7 +48,7 @@ public class BinaryTreePrintRootToLeaf {
 	
 	/**
 	 * DFS - preorder (Data, Left, Right)
-	 * Time Complexity: O(n)
+	 * Time Complexity: O(n) where n is the number of nodes
 	 * Space Complexity: O(h) where h is the height of the tree
 	 * 
 	 * @param node
