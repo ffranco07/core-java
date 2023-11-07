@@ -7,9 +7,20 @@
  * have at most 2 children.  For example, 
  * each node has 0 children, 1 child, or 2 children. 
  * Java program to search a given data key in a given BST
- *
- * A node’s height is the number of edges to its most distant leaf node. 
- * On the other hand, a node’s depth is the number of edges back up to the root.
+ * 
+ * Tree Structure Terms
+ * Node: An object containing a key or value. 
+ *       Almost all nodes have pointers to child nodes.
+ *       Leaf nodes do not link to child nodes.
+ * Root: The node at the top of the tree. Only 1 root per tree.
+ * Edge: The link between two nodes.
+ * Parent: Any node (except root) with 1 edge upward to a node.
+ * Child: The node below a parent node connected by its edge downward.
+ * Degree of a node: The total number of branches of that node.
+ * Height of a node: Number of edges to its most distant leaf node. 
+ * Depth of a node:  Number of edges back up to the root.
+ * Subtree: The descendants of a node.
+ * Forest: A collection of disjoint trees
  *
  * Time Complexity: O(log n)
  * Space Complexity: O(n)
