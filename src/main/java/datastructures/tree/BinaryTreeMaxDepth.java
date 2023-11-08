@@ -85,7 +85,7 @@ public class BinaryTreeMaxDepth {
 		}
 		
 		Stack<Pair> stack = new Stack<>();
-		stack.push(new Pair(root, 1));
+		stack.push(new Pair(root, 1, 0));
 		int ans = 0;
 		
 		while (!stack.empty()) {
@@ -95,10 +95,10 @@ public class BinaryTreeMaxDepth {
 			
 			ans = Math.max(ans, depth);
 			if (node.left != null) {
-				stack.push(new Pair(node.left, depth + 1));
+				stack.push(new Pair(node.left, depth + 1, 0));
 			}
 			if (node.right != null) {
-				stack.push(new Pair(node.right, depth + 1));
+				stack.push(new Pair(node.right, depth + 1, 0));
 			}
 		}
 		

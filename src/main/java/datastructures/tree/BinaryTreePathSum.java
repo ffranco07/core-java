@@ -50,20 +50,8 @@ public class BinaryTreePathSum {
 	}
 	
 	/** 
-	 * Find path sum
-	 * 
-	 * @param root
- 	 * @param targetSum
-	 * @return
-	 */
-	public boolean hasPathSum(Node root, int targetSum) {
-		target = targetSum;
-		return dfs(root, 0);
-	}
-	
-	/** 
 	 * Time Complexity: O(n) where n is the number of nodes
-	 * Space Complexity: O(n) where n is the number of nodes 
+	 * Space Complexity: O(n)
 	 * 
 	 * @param node
  	 * @param currSum
@@ -82,6 +70,57 @@ public class BinaryTreePathSum {
 		boolean left = dfs(node.left, currSum);
 		boolean right = dfs(node.right, currSum);
 		return left || right;
+	}
+	
+	/** 
+	 * Find path sum
+	 * 
+	 * @param root
+ 	 * @param targetSum
+	 * @return
+	 */
+	public boolean hasPathSumRecursive(Node root, int targetSum) {
+		target = targetSum;
+		return dfs(root, 0);
+	}
+	
+	/** 
+	 * Time Complexity: O(n) where n is the number of nodes
+	 * Space Complexity: O(n)
+	 * 
+	 * @param root
+ 	 * @param targetSum
+	 * @return
+	 */
+	public boolean hasPathSumIterative(Node root, int targetSum) {
+		if (root == null) {
+			return false;
+		}
+		
+		Stack<Pair> stack = new Stack<>();
+		stack.push(new Pair(root, 0, 0));
+		
+		while (!stack.empty()) {
+			Pair pair = stack.pop();
+			Node node = pair.node;
+			int currSum = pair.currSum;
+			
+			if (node.left == null && node.right == null) {
+				if ((currSum + node.data) == targetSum) {
+					return true;
+				}
+			}
+			
+			currSum += node.data;
+			if (node.left != null) {
+				stack.push(new Pair(node.left, 0, currSum));
+			}
+			if (node.right != null) {
+				stack.push(new Pair(node.right, 0, currSum));
+			}
+		}
+		
+		return false;
 	}
 	
 	// Driver Code
@@ -105,8 +144,12 @@ public class BinaryTreePathSum {
 		int targetSum = 28;
 		System.out.println("targetSum: " + targetSum);
 		
-		// Check if has path sum
-		boolean hasPathSum = tree.hasPathSum(tree.root, targetSum);
-		System.out.println("hasPathSum: " + hasPathSum);
+		// Check if has path sum via recursive method
+		boolean hasPathSum = tree.hasPathSumRecursive(tree.root, targetSum);
+		System.out.println("Recursive hasPathSum: " + hasPathSum);
+		
+		// Check if has path sum via iterative method
+		hasPathSum = tree.hasPathSumIterative(tree.root, targetSum);
+		System.out.println("Iterative hasPathSum: " + hasPathSum);
 	}
 }
