@@ -71,7 +71,7 @@ public class BinaryTreePathSum {
 	 */
 	public boolean dfs(Node node, int currSum) {
 		if (node == null) {
-            return false;
+			return false;
 		}
 		
 		if (node.left == null && node.right == null) {
