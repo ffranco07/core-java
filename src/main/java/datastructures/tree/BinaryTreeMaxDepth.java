@@ -29,15 +29,15 @@ import java.util.Stack;
 public class BinaryTreeMaxDepth {
 	Node root = null;
 	
-	// Inner class
-	public class Pair {
-    Node node;
-    int depth;
-    Pair(Node node, int depth) {
-			this.node = node;
-			this.depth = depth;
-    }
-	}
+	// 	// Inner class
+	// 	public class Pair {
+	//     Node node;
+	//     int depth;
+	//     Pair(Node node, int depth) {
+	// 			this.node = node;
+	// 			this.depth = depth;
+	//     }
+	// 	}
 	
 	// Insert node data in tree
 	public Node insert(Node root, int data) {
