@@ -1,5 +1,7 @@
 //package com.sandbox.algorithms;
 
+import java.util.*;
+
 /**
  * @author Francisco Franco
  *
@@ -10,6 +12,8 @@
  */
 
 public class FibonacciSequence {
+
+	private static Map<Integer, Integer> memo = new HashMap<>();
     
 	/**
 	 * @param myArray
@@ -46,6 +50,44 @@ public class FibonacciSequence {
 		// Start here
 		int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
 		return sum;
+	}
+
+	/**
+	 * Recursive method with Dynamic Programming via HashMap
+	 * memoization to avoid repeated recursive computations.
+	 * When we find the answer (the return value) for a given 
+	 * recursive step state, we cache that value in HashMap 
+	 * for reuse.
+	 *
+	 * Top-down approach 
+	 * Start from the top (the original problem) and move down toward the base cases
+	 *
+	 * Time Complexity: O(n) Upper Bound with Exponential Time via DP
+	 * Space Complexity: O(1) 
+	 *
+	 * @param size
+	 * @return
+	 */
+	public static int fibSeqRecursionDP(int n) {
+		// Base case which is executed at the end of recursive step
+		if (n == 0) {
+			return 0;
+		}
+		// Base case which is executed at the end of recursive step
+		if (n == 1) {
+			return 1;
+		} 
+		
+		// Check if recursive step already in memo map
+		// and return fibo sum from there if it is
+		if (memo.containsKey(n)) {
+			return memo.get(n);
+    }
+		
+		// Put fibo sum into memo map to reduce recursive steps
+    memo.put(n, fibSeqRecursion(n - 1) + fibSeqRecursion(n - 2));
+		
+		return memo.get(n);
 	}
 	
 	/**
@@ -112,9 +154,10 @@ public class FibonacciSequence {
 	public static void main(String[] args) {
 		// Ex. 1, 1, 2, 3, 5, 8, 13
 		FibonacciSequence fs = new FibonacciSequence();
-		int size = 5;
+		int size = 6;
 		System.out.println("fibSeq input size: " + size);
 		System.out.println("fibSeqRecursion output: " + fs.fibSeqRecursion(size));
+		System.out.println("fibSeqRecursionDP output: " + fs.fibSeqRecursionDP(size));
 		int[] seq = fs.fibSeqIterative2(size);
 		System.out.println("fibSeqIterative output: " + fs.arrayToString(seq));
 	}    
