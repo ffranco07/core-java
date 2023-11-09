@@ -11,32 +11,65 @@
 
 public class FibonacciSequence {
     
-    /**
-     * @param myArray
-     */
+	/**
+	 * @param myArray
+	 */
 	private String arrayToString(int[] myArray) {
 		StringBuilder builder = new StringBuilder();
 		for (int l = 0; l < myArray.length; l++) {
 	    builder.append(myArray[l] + " ");
 		}
 		return builder.toString();
-	}
-	
+  }
+
 	/**
-	 * Time Complexity: O(n) Upper Bound
-	 * Linear Time
+	 * Recursive method (NOT AS EFFICIENT as iterative method below)
+	 *
+	 * Top-down approach 
+	 * Start from the top (the original problem) and move down toward the base cases
+	 *
+	 * Time Complexity: O(2^n) Upper Bound with Exponential Time
+	 * Space Complexity: 0(1) 
 	 *
 	 * @param size
 	 * @return
 	 */
-	public int[] fibSeqIterative(int size) {
+	public static int fibSeqRecursion(int size){
+		// Base case which is executed at the end of recursive step
+		if (size == 0) {
+			return 0;
+		}
+		// Base case which is executed at the end of recursive step
+		if (size == 1) {
+			return 1;
+		} 
+		// Start here
+		int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
+		return sum;
+	}
+	
+	/**
+	 * Iterative method
+	 *
+	 * Bottom-up approach
+	 * Start at the bottom (base cases) and work our way up to larger problems
+	 *
+	 * Time Complexity: O(n) Upper Bound with Linear Time
+	 * Space Complexity: 0(1) 
+	 *
+	 * @param size
+	 * @return
+	 */
+	public int[] fibSeqIterative1(int size) {
 		int[] seq = new int[size];
-		int x = 1;
+		int x = 0;
 		int y = 1;
 		int sum;
 		for (int i = 0; i < size; i++) {
 	    switch (i) {
 	    case 0:
+				seq[i] = 0;
+				break;
 	    case 1:
 				seq[i] = 1;
 				break;	
@@ -50,37 +83,39 @@ public class FibonacciSequence {
 		}
 		return seq;
 	}
- 
+	
 	/**
-	 * Time Complexity: O(2^n) Upper Bound
-	 * Recursive method 
-	 * NOT AS EFFICIENT as iterative method above
-	 * Exponential Time 
+	 * Iterative method
+	 *
+	 * Bottom-up approach
+	 * Start at the bottom (base cases) and work our way up to larger problems
+	 *
+	 * Time Complexity: O(n) Upper Bound with Linear Time
+	 * Space Complexity: 0(1) 
 	 *
 	 * @param size
 	 * @return
 	 */
-	public static int fibSeqRecursion(int size){
-		if (size == 0) {
-			return 0;
+	public int[] fibSeqIterative2(int size) {
+		int[] fibSeq = new int[size];
+		fibSeq[0] = 0;
+		fibSeq[1] = 1;
+		for (int i = 2; i < size; i++) {
+			fibSeq[i] = fibSeq[i - 1] + fibSeq[i - 2];
 		}
-		if (size == 1) {
-			return 1;
-		} 
-		int sum = fibSeqRecursion(size - 1) + fibSeqRecursion(size - 2);
-		return sum;
+		return fibSeq;
 	}
-	
+ 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// Ex. 1, 1, 2, 3, 5, 8, 13
 		FibonacciSequence fs = new FibonacciSequence();
-		int size = 6;
+		int size = 5;
 		System.out.println("fibSeq input size: " + size);
 		System.out.println("fibSeqRecursion output: " + fs.fibSeqRecursion(size));
-		int[] seq = fs.fibSeqIterative(5);
+		int[] seq = fs.fibSeqIterative2(size);
 		System.out.println("fibSeqIterative output: " + fs.arrayToString(seq));
 	}    
 }

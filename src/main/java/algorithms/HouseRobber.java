@@ -43,6 +43,8 @@ public class HouseRobber {
 	 * @return
 	 */
 	public static int robRecursive(int[] nums, int i) {
+		// DEBUG
+		//System.out.println("i" + i);
     if (i < 0) {
 			return 0;
     }
