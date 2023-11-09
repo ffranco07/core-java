@@ -29,7 +29,7 @@ public class FibonacciSequence {
 	 * Start from the top (the original problem) and move down toward the base cases
 	 *
 	 * Time Complexity: O(2^n) Upper Bound with Exponential Time
-	 * Space Complexity: 0(1) 
+	 * Space Complexity: O(1) 
 	 *
 	 * @param size
 	 * @return
@@ -55,7 +55,7 @@ public class FibonacciSequence {
 	 * Start at the bottom (base cases) and work our way up to larger problems
 	 *
 	 * Time Complexity: O(n) Upper Bound with Linear Time
-	 * Space Complexity: 0(1) 
+	 * Space Complexity: O(1) 
 	 *
 	 * @param size
 	 * @return
@@ -91,7 +91,7 @@ public class FibonacciSequence {
 	 * Start at the bottom (base cases) and work our way up to larger problems
 	 *
 	 * Time Complexity: O(n) Upper Bound with Linear Time
-	 * Space Complexity: 0(1) 
+	 * Space Complexity: O(1) 
 	 *
 	 * @param size
 	 * @return
