@@ -5,11 +5,8 @@
  *
  */
 public class LinkedListFindMiddle {
-	Node[] nodeArray = null;
-
-	public LinkedListFindMiddle(int size) {
-		nodeArray = new Node[size];
-	}
+	Node head = null;
+	int size = 0;
 	
 	// 	// Inner class
 	// 	public class Node {
@@ -43,47 +40,114 @@ public class LinkedListFindMiddle {
 		builder.append("}");
 		System.out.println(builder.toString());
 	}
+
+	// Set linked list node array from data array
+	public void addNodes(int[] dataArray) {
+		Node last = null;
+		for (int i = 0; i < dataArray.length; i++) {
+			// DEBUG
+			System.out.println("last: " + last);
+			if (head == null) {
+				head = new Node(dataArray[i]);
+				last = head;
+			}
+			else {
+				last.next = new Node(dataArray[i]);
+				last = last.next;
+			}
+			size++;
+		}
+	}
+
+	// Find node 
+	public Node findNode(int index) {
+		if (head == null) {
+			return null;
+		}
+		Node last = head;
+		int count = 0;
+		while (last != null) {
+			if (count == index) {
+				return last;
+			}
+			last = last.next;
+			count++;
+		}
+		return null;
+	}
 	
+	// Find middle index
+	public void findMiddleNode() {
+		int midIndex = -1;
+		Node midNode = null;
+		System.out.println("#########");
+		// Check if linked list size is ODD since subtracting 1 from it
+		if ((size - 1) % 2 == 0) {
+			midIndex = size / 2;
+			// DEBUG
+			System.out.println("midIndex:" + midIndex);
+			midNode = findNode(midIndex);
+			if (midNode != null) {
+				// Print out middle element
+				System.out.println("element: " + findNode(midIndex).toString());
+			}
+		}
+		else {
+			// The linked list size is EVEN here
+			System.out.println("There are 2 middle nodes, printing second middle element");
+			midIndex = size / 2;
+			// DEBUG
+			System.out.println("midIndex:" + midIndex);
+			midNode = findNode(midIndex);
+			if (midNode != null) {
+				// Print out middle element
+				System.out.println("element: " + findNode(midIndex).toString());
+			}
+		}
+	}
+	
+	// Most elegant solution using the fast and slow pointer technique. 
+	// If we have one pointer moving twice as fast as the other, then by the time it 
+	// reaches the end, the slow pointer will be halfway through since it is moving 
+	// at half the speed.
+	public Node findMiddleWithFastSlowPointers() {
+    Node slow = head;
+    Node fast = head;
+		int count = 0;
+    while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			count++;
+    }
+		// DEBUG
+		System.out.println("#########");
+		System.out.println("Via fast/slow pointers:");
+		// DEBUG
+		System.out.println("midIndex:" + count);
+		// Print out middle element
+		System.out.println("element: " + findNode(count).toString());
+		return slow;
+	}
+	
+	// Driver code
 	public static void main(String[] args) {
 		// Initialize data array
-		int[] dataArray = {1, 2, 3, 4, 5, 6};
+		int[] dataArray = {1, 2, 3, 4, 5};
 		
-		// Initialize linked list
-		LinkedListFindMiddle linkedList = new LinkedListFindMiddle(dataArray.length);
-
+		// Create linked list instance
+		LinkedListFindMiddle linkedList = new LinkedListFindMiddle();
+		
 		// Print data array
 		linkedList.printDataArray(dataArray);
 		
-		// Set linked list node array from data array
-		Node node = null;
-		for (int i = 0; i < dataArray.length; i++) {
-			node = new Node(dataArray[i]);
-			if (i < (dataArray.length - 1)) {
-				node.next = node;
-			}
-			linkedList.nodeArray[i] = node;
-		}
-		
-		int midIndex;
-		if ((linkedList.nodeArray.length - 1) % 2 == 0) {
-			// DEBUG
-			//System.out.println("Linked list node array length minus 1 is EVEN");
-			midIndex = linkedList.nodeArray.length / 2;
-			// DEBUG
-			//System.out.println("midIndex:" + midIndex);
-			// Print out middle element
-			System.out.println("Middle element:" + linkedList.nodeArray[midIndex].getData());
-		}
-		else {
-			// DEBUG
-			//System.out.println("Linked list node array length minus 1 is ODD");
-			midIndex = linkedList.nodeArray.length / 2;
-			// DEBUG
-			//System.out.println("midIndex:" + midIndex);
-			System.out.println("There are 2 middle nodes, printing second middle element");
-			// Print out middle element
-			System.out.println("Middle element:" + linkedList.nodeArray[midIndex].getData());
-		}
+		// Add data array to linked list
+		linkedList.addNodes(dataArray);
+
+		// Find middle index of linked list
+		linkedList.findMiddleNode();
+
+		// Find middle index of linked list with fast and slow pointers technique
+		linkedList.findMiddleWithFastSlowPointers();
 	}
 }
 

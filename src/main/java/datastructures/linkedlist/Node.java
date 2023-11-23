@@ -21,4 +21,11 @@ public class Node {
 	public Node getNext() {
 		return next;
 	}
+
+	@Override
+	public String toString() {
+		String objStr = "Node [data=" + data 
+			+ "]";
+		return objStr;
+	}
 }
