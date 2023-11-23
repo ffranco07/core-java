@@ -1,9 +1,18 @@
-package com.sandbox.datastructures.linkedlist;
+//package com.sandbox.datastructures.linkedlist;
 
 /**
  * @author Francisco Franco
  *
- * Java program to delete a given node in linked list under given constraints
+ * Given two numbers represented by two lists, write a function 
+ * that returns the sum in the form of a linked list.
+ *
+ * Example:
+ *    Input: 
+ *    List1: 7->5->9->4->6 // represents number 75946
+ *    List2: 8->4 // represents number 84
+ *    Output: 
+ *    Resultant list: 7->6->0->3->0// represents number 76030
+ *    Explanation: 75946+84=76030
  *
  * NOTES: 
  * 1) Node only has reference to Next Node
@@ -13,73 +22,77 @@ package com.sandbox.datastructures.linkedlist;
 public class LinkedListAddNumbers {
 	public static Node head1, head2;
 	
-	public static class Node {
-		int data;
-		Node next;
-		
-		Node(int d) {
-			data = d;
-			next = null;
+	// 	public static class Node {
+	// 		int data;
+	// 		Node next;
+	
+	// 		Node(int d) {
+	// 			data = d;
+	// 			next = null;
+	// 		}
+	// 	}
+
+	// Appends preceding zeros in case a list is having lesser nodes than the other one
+	private void addPrecedingZeros(Node start1, Node start2) {
+		Node next1 = start1.next;
+		Node next2 = start2.next;
+		while (next1 != null && next2 != null) {
+			next1 = next1.next;
+			next2 = next2.next;
 		}
+		if (next1 == null && next2 != null) {
+			while (next2 != null) {
+				Node node = new Node(0);
+				node.next = start1.next;
+				start1.next = node;
+				next2 = next2.next;
+			}
+		} 
+		else if (next2 == null && next1 != null) {
+			while (next1 != null) {
+				Node node = new Node(0);
+				node.next = start2.next;
+				start2.next = node;
+				next1 = next1.next;
+			}
+		}
+	}
+
+	// Adds lists and returns the carry
+	private int sumTwoNodes(Node first, Node second, Node result) {
+		if (first == null) {
+			return 0;
+		}
+		int number = first.data + second.data + sumTwoNodes(first.next, second.next, result);
+		Node node = new Node(number % 10);
+		node.next = result.next;
+		result.next = node;
+		return number / 10;
 	}
 	
 	/* 
 	 * Adds contents of two linked lists 
 	 * and return the head node of resultant list 
 	 */
+	 /* Adds contents of two linked lists and prints it */
 	public Node addTwoLists(Node first, Node second) {
-		Node res = null; // res is head node of the resultant list
-		Node prev = null;
-		Node temp = null;
-		int carry = 0, sum;
+		Node start1 = new Node(0);
+		start1.next = first;
+		Node start2 = new Node(0);
+		start2.next = second;
 		
-		while (first != null || second != null) { //while both lists exist
-			// Calculate value of next digit in resultant list.
-			// The next digit is sum of following things
-			// (i)  Carry
-			// (ii) Next digit of first list (if there is a next digit)
-			// (ii) Next digit of second list (if there is a next digit)
-			sum = carry + (first != null ? first.data : 0)
-				+ (second != null ? second.data : 0);
-			
-			// update carry for next calulation
-			carry = (sum >= 10) ? 1 : 0;
-			
-			// update sum if it is greater than 10
-			sum = sum % 10;
-			
-			// Create a new node with sum as data
-			temp = new Node(sum);
-			
-			// if this is the first node then set it as head of
-			// the resultant list
-			if (res == null) {
-				res = temp;
-			} 
-			else  {
-				// If this is not the first node then connect it to the rest.
-				prev.next = temp;
-			}
-			
-			// Set prev for next insertion
-			prev = temp;
-			
-			// Move first and second pointers to next nodes
-			if (first != null) {
-				first = first.next;
-			}
-			if (second != null) {
-				second = second.next;
-			}
+		addPrecedingZeros(start1, start2);
+		Node result = new Node(0);
+		if (sumTwoNodes(start1.next, start2.next, result) == 1) {
+			Node node = new Node(1);
+			node.next = result.next;
+			result.next = node;
 		}
-		if (carry > 0) {
-			temp.next = new Node(carry);
-		}
-		// return head of the resultant list
-		return res;
+		// Since result node with 0 value just a holder
+		return result.next;
 	}
 	
-	/* Utility function to print a linked list */
+	// Utility function to print a linked list
 	public void printList(Node head) {
 		while (head != null) {
 			System.out.print(head.data + " ");
@@ -98,18 +111,18 @@ public class LinkedListAddNumbers {
 		list.head1.next.next = new Node(9);
 		list.head1.next.next.next = new Node(4);
 		list.head1.next.next.next.next = new Node(6);
-		System.out.print("First List is ");
+		System.out.print("First List: ");
 		list.printList(head1);
 		
 		// creating seconnd list
 		list.head2 = new Node(8);
 		list.head2.next = new Node(4);
-		System.out.print("Second List is ");
+		System.out.print("Second List: ");
 		list.printList(head2);
 		
 		// add the two lists and see the result
 		Node rs = list.addTwoLists(head1, head2);
-		System.out.print("Resultant List is ");
+		System.out.print("Resultant List: ");
 		list.printList(rs);
 	}
 }

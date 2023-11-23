@@ -17,16 +17,16 @@ public class LinkedList {
 		size = 0;
 	}
 	
-	// Inner class
-	public class Node {
-		int data; 
-		Node next;
-		
-		public Node (int d) {
-			this.data = d;
-			this.next = null;
-		}
-	}
+	// 	// Inner class
+	// 	public class Node {
+	// 		int data; 
+	// 		Node next;
+	
+	// 		public Node (int d) {
+	// 			this.data = d;
+	// 			this.next = null;
+	// 		}
+	// 	}
 	
 	// Linked list add method
 	public boolean add(int data) {
@@ -95,15 +95,20 @@ public class LinkedList {
 	
 	// Print linked list
 	public void printLinkedList(LinkedList linkedList) {
+		StringBuffer buffer = new StringBuffer();
 		if (linkedList.head == null) {
-			System.out.println("linked list is NULL");
+			buffer.append("linked list is NULL");
 		}
 		else {
 			Node last = linkedList.head;
 			while (last != null) {
-				System.out.println("data:" + last.data);
+				buffer.append(last.data);
 				last = last.next;
+				if (last != null) {
+					buffer.append("->");
+				}
 			}
+			System.out.println(buffer.toString());
 			System.out.println("size:" + size);
 		}
 	}
@@ -115,8 +120,13 @@ public class LinkedList {
 		linkedList.add(2);
 		linkedList.add(3);
 		linkedList.add(4);
-		linkedList.remove(1);
-		linkedList.remove(0);
+		linkedList.printLinkedList(linkedList);
+		int index0 = 0, index1 = 1;
+		linkedList.remove(index0);
+		System.out.println("Remove index: " + index0);
+		linkedList.printLinkedList(linkedList);
+		linkedList.remove(index1);
+		System.out.println("Remove index: " + index1);
 		linkedList.printLinkedList(linkedList);
 	}
 }
