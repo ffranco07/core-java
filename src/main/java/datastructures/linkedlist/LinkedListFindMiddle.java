@@ -111,7 +111,7 @@ public class LinkedListFindMiddle {
 	 * reaches the end, the slow pointer will be halfway through since it is moving 
 	 * at half the speed.
 	 * 
-	 * Time Complexity: O(n) for list traverses
+	 * Time Complexity: O(n) for list traversals
 	 * Space Complexity: O(1)
 	 */
 	public Node findMiddleWithFastSlowPointers() {
