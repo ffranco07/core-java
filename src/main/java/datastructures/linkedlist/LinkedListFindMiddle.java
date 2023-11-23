@@ -106,10 +106,14 @@ public class LinkedListFindMiddle {
 		}
 	}
 	
-	// Most elegant solution using the fast and slow pointer technique. 
-	// If we have one pointer moving twice as fast as the other, then by the time it 
-	// reaches the end, the slow pointer will be halfway through since it is moving 
-	// at half the speed.
+	/* Most elegant solution using the fast and slow pointer technique. 
+	 * If we have one pointer moving twice as fast as the other, then by the time it 
+	 * reaches the end, the slow pointer will be halfway through since it is moving 
+	 * at half the speed.
+	 * 
+	 * Time Complexity: O(n) for list traverses
+	 * Space Complexity: O(1)
+	 */
 	public Node findMiddleWithFastSlowPointers() {
     Node slow = head;
     Node fast = head;
