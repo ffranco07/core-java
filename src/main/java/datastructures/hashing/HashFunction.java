@@ -1,6 +1,8 @@
 import java.util.Arrays;
 
 /* 
+ * A hash table is an array of items, which are {key: value} pairs
+ *
  * If we think of a Hash Table as an array then a hash function 
  * is used to generate a unique key for every item in the array.
  * 
