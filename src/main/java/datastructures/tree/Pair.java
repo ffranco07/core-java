@@ -1,7 +1,7 @@
 /**
  * @author Francisco Franco
  *
- * Node class used in linked list data structure
+ * Pair class used in tree data structure
  */
 
 public class Pair {
