@@ -60,7 +60,15 @@ public class BinaryTreeMaxDepth {
 		return root;
 	}
 	
-	// Find max depth of tree recursively
+	/**
+	 * Find max depth of tree recursively
+	 * Time Complexity: O(n), as it traverses the tree only once 
+	 * Space Complexity: O(h), where h is the height of the tree
+	 * This space is due to the recursive call stack
+	 *
+	 * @param root
+	 * @return
+	 */
 	public int maxDepthRecursive(Node root) {
 		if (root == null) {
 			return 0;
@@ -72,9 +80,10 @@ public class BinaryTreeMaxDepth {
 	}
 
 	/** 
-	 * Find max depth of tree iterative
+	 * Find min depth of tree iterative
 	 * Time Complexity: O(n) where n is the number of nodes
-	 * Space Complexity: O(h) where h is the height of the tree
+	 * Space Complexity: O(n), as we need to store the elements 
+	 * in a queue for level order traversal
 	 * 
 	 * @param root
 	 * @return

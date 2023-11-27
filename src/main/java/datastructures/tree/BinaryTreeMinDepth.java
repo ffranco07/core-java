@@ -61,7 +61,15 @@ public class BinaryTreeMinDepth {
 		return root;
 	}
 	
-	// Find min depth of tree recursively
+	/**
+	 * Find min depth of tree recursively
+	 * Time Complexity: O(n), as it traverses the tree only once 
+	 * Space Complexity: O(h), where h is the height of the tree
+	 * This space is due to the recursive call stack
+	 *
+	 * @param root
+	 * @return
+	 */
 	public int minDepthRecursive(Node root) {
 		if (root == null) {
 			return 0;
@@ -81,7 +89,8 @@ public class BinaryTreeMinDepth {
 	/** 
 	 * Find min depth of tree iterative
 	 * Time Complexity: O(n) where n is the number of nodes
-	 * Space Complexity: O(h) where h is the height of the tree
+	 * Space Complexity: O(n), as we need to store the elements 
+	 * in a queue for level order traversal
 	 * 
 	 * @param root
 	 * @return
