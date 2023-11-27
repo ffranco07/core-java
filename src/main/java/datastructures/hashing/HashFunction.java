@@ -1,18 +1,19 @@
 import java.util.Arrays;
 
 /* 
- * If we think of a Hash Table as an array
- * then a hash function is used to generate
- * a unique key for every item in the array.
+ * If we think of a Hash Table as an array then a hash function 
+ * is used to generate a unique key for every item in the array.
  * 
- * The position the item goes in is known
- * as the slot. Hashing doesn't work very well
- * in situations in which duplicate data
- * is stored. Also it isn't good for searching
- * for anything except a specific key.
+ * Since every item is entered using a calculation, this allows you to 
+ * reverse the calculation to immediately find the proper index. This way 
+ * you can find items without the need to search through the whole array.
  * 
- * However a Hash Table is a data structure that 
- * offers fast insertion and searching capabilities.
+ * The position the item goes in is known as the slot. Hashing doesn't 
+ * work very well in situations in which duplicate data is stored. Also it 
+ * isn't good for searching for anything except a specific key.
+ * 
+ * However a Hash Table is a data structure that offers fast insertion 
+ * and searching capabilities.
  *
  * What is the point of a hash function?
  *
