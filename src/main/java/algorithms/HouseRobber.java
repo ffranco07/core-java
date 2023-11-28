@@ -35,7 +35,7 @@ public class HouseRobber {
 	}
 
 	/**
-	 * Recursive
+	 * Recursive -> Top-down approach
 	 * Time Complexity: O(2^n)
 	 * Auxiliary Space: O(n)
 	 *
@@ -48,11 +48,14 @@ public class HouseRobber {
     if (i < 0) {
 			return 0;
     }
-    return Math.max(robRecursive(nums, i - 2) + nums[i], robRecursive(nums, i - 1));
+		int max = Math.max(robRecursive(nums, i - 2) + nums[i], robRecursive(nums, i - 1));
+    // DEBUG
+		//System.out.println("max: " + max);
+		return max;
 	}
 	
 	/**
-	 * Iterative + 2 variables
+	 * Iterative + 2 variables -> Botttom-up approach
 	 * Time Complexity: O(n)
 	 * Auxiliary Space: O(n)
 	 *
