@@ -36,7 +36,7 @@ public class NumberOfRecentCalls {
 	}
 	
 	/**
-	 * Time Complexity: O(1) -> For removals from queue
+	 * Time Complexity: O(1) -> To insert and delete at the beginning or at the end of the queue.
 	 * @param t
 	 * @return
 	 */
