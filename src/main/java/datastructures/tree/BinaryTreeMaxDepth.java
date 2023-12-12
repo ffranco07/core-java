@@ -76,6 +76,9 @@ public class BinaryTreeMaxDepth {
 		
 		int left = maxDepthRecursive(root.left);
 		int right = maxDepthRecursive(root.right);
+		
+		// Add 1 to count current node
+		// since leaf node will have left = 0 and right = 0
 		return Math.max(left, right) + 1;
 	}
 
@@ -83,7 +86,7 @@ public class BinaryTreeMaxDepth {
 	 * Find min depth of tree iterative
 	 * Time Complexity: O(n) where n is the number of nodes
 	 * Space Complexity: O(n), as we need to store the elements 
-	 * in a queue for level order traversal
+	 * in a stack for level order traversal
 	 * 
 	 * @param root
 	 * @return
@@ -94,13 +97,17 @@ public class BinaryTreeMaxDepth {
 		}
 		
 		Stack<Pair> stack = new Stack<>();
-		stack.push(new Pair(root, 1, 0));
+		// Using edge count instead of node count
+		stack.push(new Pair(root, 0, 0));
 		int ans = 0;
 		
 		while (!stack.empty()) {
 			Pair pair = stack.pop();
 			Node node = pair.node;
 			int depth = pair.depth;
+			
+			// DEBUG
+			//System.out.println("node data: " + node.data + " depth: " + depth);
 			
 			ans = Math.max(ans, depth);
 			if (node.left != null) {
@@ -110,8 +117,8 @@ public class BinaryTreeMaxDepth {
 				stack.push(new Pair(node.right, depth + 1, 0));
 			}
 		}
-		
-		return ans;
+		// Add 1 to return node count to root from max depth edge count
+		return ans + 1;
 	}
 	
 	// Driver Code
@@ -127,6 +134,7 @@ public class BinaryTreeMaxDepth {
 		tree.insert(tree.root, 6);
 		tree.insert(tree.root, 8);
 		tree.insert(tree.root, 9);
+		tree.insert(tree.root, 11);
 
 		// Print BST via BinaryTreePrintRootToLeaf
 		BinaryTreePrintRootToLeaf btPrint = new BinaryTreePrintRootToLeaf();
@@ -134,10 +142,10 @@ public class BinaryTreeMaxDepth {
 		
 		// Find max depth recursively
 		int maxDepth = tree.maxDepthRecursive(tree.root);
-		System.out.println("Recursive max depth: " + maxDepth);
+		System.out.println("Recursive max depth node count: " + maxDepth);
 		
 		// Find max depth iterative
 		maxDepth = tree.maxDepthIterative(tree.root);
-		System.out.println("Iterative max depth: " + maxDepth);
+		System.out.println("Iterative max depth node count: " + maxDepth);
 	}
 }
