@@ -3,6 +3,14 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+/**
+ * @author Francisco Franco
+ *
+ * Predicate lambda function passed as a parameter
+ * to filter for even numbers
+ * 
+ */
+
 public class Java8PredicateTutorial {
 	public static void main(String[] args) {
 		// Since input to predicate function is an integer
