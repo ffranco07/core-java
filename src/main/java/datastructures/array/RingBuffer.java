@@ -1,5 +1,3 @@
-package com.sandbox.datastructures.array;
-
 /**
  * @author Francisco Franco
  *
