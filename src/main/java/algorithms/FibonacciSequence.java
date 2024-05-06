@@ -152,7 +152,7 @@ public class FibonacciSequence {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// Ex. 1, 1, 2, 3, 5, 8, 13
+		// Ex. 0, 1, 1, 2, 3, 5, 8, 13
 		FibonacciSequence fs = new FibonacciSequence();
 		int size = 6;
 		System.out.println("fibSeq input size: " + size);
