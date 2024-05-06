@@ -24,7 +24,8 @@ public class Flatten2DArray {
 				retList.add(array[i][j]);
 			}
 		}
-		return retList.stream().mapToInt(Integer::intValue).toArray();
+		return retList.stream().mapToInt((Integer i) -> i.intValue()).toArray();
+		//return retList.stream().mapToInt(Integer::intValue).toArray();
 	}
 	
 	public static void main(String[] args) {
