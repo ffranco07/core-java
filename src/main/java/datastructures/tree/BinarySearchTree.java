@@ -61,7 +61,9 @@ public class BinarySearchTree {
 			return root;
 		}
 		
-		// Otherwise, recur down the tree
+		// Otherwise, recurse down the tree
+		// to insert as either left or right 
+		// child node depending on data value
 		if (data < root.data)
 			root.left = insert(root.left, data);
 		else if (data > root.data)
