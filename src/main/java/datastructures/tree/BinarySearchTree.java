@@ -69,7 +69,8 @@ public class BinarySearchTree {
 		else if (data > root.data)
 			root.right = insert(root.right, data);
 		
-		// Return the (unchanged) root pointer
+		// Return the root pointer with inserted
+		// child value from recursive steps above
 		return root;
 	}
 	
