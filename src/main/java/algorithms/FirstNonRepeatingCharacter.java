@@ -6,8 +6,11 @@
  */
 
 public class FirstNonRepeatingCharacter {
-	// Standard ASCII characters (0-127) + 
-	// Extended ASCII characters (128- 255)
+	// In total, there are 256 ASCII characters.
+	// Divided into three categories: 
+	// 1) ASCII control characters (0-31 and 127)
+	// 2) ASCII printable characters (32-126)
+	// 3) Extended ASCII characters (128-255)
 	public static final int NO_OF_CHARS = 256;
 	
 	// Count array initilaized to 0 by default
