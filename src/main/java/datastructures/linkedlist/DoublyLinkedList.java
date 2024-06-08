@@ -1,14 +1,14 @@
 /**
  * @author Francisco Franco
  *
- * Implementing a singly linked list in java
+ * Implementing a doubly linked list in java
  *
- * Time Complexity: O(1) -> for add/remove to front or add to end with tail pointer
+ * Time Complexity: O(1) -> for add/remove to front or end
  * Time Complexity: O(n) -> for search
  * Space Complexity: O(n)
  */
 
-public class SinglyLinkedList {
+public class DoublyLinkedList {
 	private int size = 0; // number of elements
 	private Node head = null; // head of the list
 	private Node tail = null; // tail of the list
@@ -17,7 +17,7 @@ public class SinglyLinkedList {
 	// Constructor
 	// ===================
 
-	public SinglyLinkedList() {
+	public DoublyLinkedList() {
 		size = 0;
 	}
 	
@@ -40,7 +40,7 @@ public class SinglyLinkedList {
 	// ===================
 
 	// Print linked list
-	private void printLinkedList(SinglyLinkedList linkedList) {
+	private void printLinkedList(DoublyLinkedList linkedList) {
 		StringBuffer buffer = new StringBuffer();
 		if (linkedList.head == null) {
 			buffer.append("NULL");
@@ -74,13 +74,19 @@ public class SinglyLinkedList {
 			// Initialize last node with head
 			Node last = head;
 			
-			// Iterate to last node
+			// Iterate to last node with last.next = null 
 			while(last.next != null) {
 				last = last.next;
 			}
 			
+			// Create new Node with data
+			Node newNode = new Node(data);
+			
+			// Set newNode.prev pointer to last/tail node
+			newNode.prev = last;
+			
 			// Add new node data to last node
-			last.next = new Node(data);
+			last.next = newNode;
 		}
 		size++;
 		return true;
@@ -100,9 +106,14 @@ public class SinglyLinkedList {
 			// Create new node to add
 			Node newNode = new Node(data);
 			
+			// Ex. List: A -> B -> C
+			// tail points to C here
+			// Set newNode.prev pointer for D to tail C
+			newNode.prev = tail;
+			
 			// Ensures the previous tail node links to the new node.
 			// Ex. List: A -> B -> C
-			// tail still points to C here before tail is reinitailzed which then sets tail to D
+			// tail still points to C here before tail is reinitialized which then sets tail to D
 			tail.next = newNode;
 			
 			// Add new node data to last node
@@ -159,27 +170,25 @@ public class SinglyLinkedList {
 			head = head.next;
 		}
 		else {
-			Node last = head;
-			Node prevNode = null;
+			Node curr = head;
 			for (int i = 0; i < position; i++) {
-				prevNode = last;
-				last = last.next;
+				curr = curr.next;
 			}
-			// Update prevNode.next pointer to last.next node since "last" will be removed
+			// Update curr.prev.next pointer to curr.next node since "curr" will be skipped/removed
 			// Ex. List: A -> B -> C -> D
 			// Ex. Remove index/position 1 which should be B
-			// Ex. After for loop above, prevNode will be A and "last" will be B
-			// Ex. prevNode.next pointer (A pointer) will point to last.next node which is C
+			// Ex. After for loop above, curr.prev will be A and "curr" will be B
+			// Ex. curr.prev.next pointer (A pointer) will point to curr.next node which is C
 			// After remove:
 			// List: A -> C -> D
-			prevNode.next = last.next;
+			curr.prev.next = curr.next;
 		}
 		size--;
 	}
 	
-	// Remove from front
+	// Remove from first
 	// Time Complexity: O(1) 
-	public void removeFromFront() {
+	public void removeFirst() {
 		if (head == null) {
 			return;
 		}
@@ -187,10 +196,10 @@ public class SinglyLinkedList {
 		size--;
 	}
 	
-	// Remove from end (unoptimized)
-	// NOT optimized since need to iterate to last node in list every time
-	// Time Complexity: O(n)
-	public void removeFromEnd() {
+	// Remove last
+	// Optimized since using tail.prev pointer directly 
+	// Time Complexity: O(1)
+	public void removeLast() {
 		if (head == null || tail == null) { 
 			return;
 		}
@@ -198,19 +207,15 @@ public class SinglyLinkedList {
 			head = tail = null;
 		}
 		else {
-			Node current = head;
-			while (current.next != tail) {
-				current = current.next;
-			}
-			current.next = null;
-			tail = current;
+			tail = tail.prev;
+			tail.next = null;
 		}
 		size--;
 	}
 	
 	// Driver code
 	public static void main(String[] args) {
-		SinglyLinkedList linkedList = new SinglyLinkedList();
+		DoublyLinkedList linkedList = new DoublyLinkedList();
 		//linkedList.addToFront(1);
 		//linkedList.addToFront(2);
 		//linkedList.addToFront(3);
@@ -234,12 +239,12 @@ public class SinglyLinkedList {
 		linkedList.remove(index1);
 		linkedList.printLinkedList(linkedList);
 		System.out.println("#####################");
-		System.out.println("Removed from Front");
-		linkedList.removeFromFront();
+		System.out.println("Removed First");
+		linkedList.removeFirst();
 		linkedList.printLinkedList(linkedList);
 		System.out.println("#####################");
-		System.out.println("Removed from End");
-		linkedList.removeFromEnd();
+		System.out.println("Removed Last");
+		linkedList.removeLast();
 		linkedList.printLinkedList(linkedList);
 	}
 }
