@@ -100,9 +100,9 @@ public class SinglyLinkedList {
 			// Create new node to add
 			Node newNode = new Node(data);
 			
-			// Ensures the previous tail node links to the new node.
 			// Ex. List: A -> B -> C
-			// tail still points to C here before tail is reinitailzed which then sets tail to D
+			// tail points to C here 
+			// Set tail.next pointer for C to newNode D (C->D)
 			tail.next = newNode;
 			
 			// Add new node data to last node

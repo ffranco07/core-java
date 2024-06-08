@@ -106,18 +106,18 @@ public class DoublyLinkedList {
 			// Create new node to add
 			Node newNode = new Node(data);
 			
-			// Ex. List: A -> B -> C
+			// Ex. List: A <-> B <-> C
 			// tail points to C here
-			// Set newNode.prev pointer for D to tail C
+			// Set newNode.prev pointer for D to tail C (C<-D)
 			newNode.prev = tail;
 			
-			// Ensures the previous tail node links to the new node.
-			// Ex. List: A -> B -> C
-			// tail still points to C here before tail is reinitialized which then sets tail to D
+			// Ex. List: A <-> B <-> C
+			// tail still points to C here 
+			// Set tail.next pointer for C to newNode D (C<->D)
 			tail.next = newNode;
 			
-			// Add new node data to last node
-			// Ex. List: A -> B -> C -> D
+			// Add new node data to last node in list
+			// Ex. List: A <-> B <-> C <-> D
 			// The tail is reinitialized and tail is now set to D 
 			tail = newNode;
 		}
@@ -175,12 +175,12 @@ public class DoublyLinkedList {
 				curr = curr.next;
 			}
 			// Update curr.prev.next pointer to curr.next node since "curr" will be skipped/removed
-			// Ex. List: A -> B -> C -> D
+			// Ex. List: A <-> B <-> C <-> D
 			// Ex. Remove index/position 1 which should be B
 			// Ex. After for loop above, curr.prev will be A and "curr" will be B
 			// Ex. curr.prev.next pointer (A pointer) will point to curr.next node which is C
 			// After remove:
-			// List: A -> C -> D
+			// List: A <-> C <-> D
 			curr.prev.next = curr.next;
 		}
 		size--;
